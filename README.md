@@ -67,7 +67,7 @@ Custom status conditions: Danger Zone, Down and Out, Engaged, Exposed, Hidden, I
 2. Click **Install System**
 3. Paste this URL in the **Manifest URL** field:
    ```
-   https://raw.githubusercontent.com/rob8341/lancer-minimal/main/system.json
+   https://raw.githubusercontent.com/rob8341/lancer-minimal/refs/heads/main/system.json
    ```
 4. Click **Install**
 
