@@ -1,0 +1,181 @@
+{{!-- Lancer Minimal — Item Sheet --}}
+<form class="lancer-minimal sheet item {{#if locked}}locked{{/if}}" autocomplete="off">
+  <header class="sheet-header">
+    <img class="profile-img" src="{{item.img}}" {{#unless locked}}data-edit="img"{{/unless}}
+         title="{{item.name}}" />
+    <div class="header-fields">
+      <div class="field-row">
+        <div class="field-group">
+          <label>Name</label>
+          <input name="name" type="text" value="{{item.name}}" placeholder="Item Name" {{#if locked}}disabled{{/if}} />
+        </div>
+      </div>
+      <div class="field-row">
+        <span class="item-type-badge">{{typeLabel}}</span>
+        {{#if locked}}<span class="item-locked-badge"><i class="fas fa-lock"></i> Locked</span>{{/if}}
+      </div>
+    </div>
+  </header>
+
+  <section class="sheet-body" style="padding: 10px 14px;">
+
+    {{!-- ══════════ TALENT ══════════ --}}
+    {{#if (eq itemType "talent")}}
+    <div class="field-group">
+      <label>Rank</label>
+      <input name="system.rank" type="number" value="{{system.rank}}" min="1" max="3" style="width:60px;" {{#if locked}}disabled{{/if}} />
+    </div>
+    <div class="field-group" style="margin-top:8px;">
+      <label>Description</label>
+      <textarea name="system.description" rows="8" style="width:100%; resize:vertical;" {{#if locked}}disabled{{/if}}>{{system.description}}</textarea>
+    </div>
+    {{/if}}
+
+    {{!-- ══════════ CORE BONUS ══════════ --}}
+    {{#if (eq itemType "core_bonus")}}
+    <div class="field-group">
+      <label>Source</label>
+      <input name="system.source" type="text" value="{{system.source}}" placeholder="e.g. GMS, IPS-N" {{#if locked}}disabled{{/if}} />
+    </div>
+    <div class="field-group" style="margin-top:8px;">
+      <label>Description</label>
+      <textarea name="system.description" rows="8" style="width:100%; resize:vertical;" {{#if locked}}disabled{{/if}}>{{system.description}}</textarea>
+    </div>
+    {{/if}}
+
+    {{!-- ══════════ WEAPON ══════════ --}}
+    {{#if (eq itemType "weapon")}}
+    <div class="field-row" style="gap:10px; display:flex;">
+      <div class="field-group" style="flex:1;">
+        <label>Mount</label>
+        <input name="system.mount" type="text" value="{{system.mount}}" placeholder="e.g. Auxiliary, Main" {{#if locked}}disabled{{/if}} />
+      </div>
+      <div class="field-group" style="flex:1;">
+        <label>Type</label>
+        <input name="system.type" type="text" value="{{system.type}}" placeholder="e.g. Melee, Ranged" {{#if locked}}disabled{{/if}} />
+      </div>
+    </div>
+    <div class="field-row" style="gap:10px; display:flex; margin-top:8px;">
+      <div class="field-group" style="flex:1;">
+        <label>Damage</label>
+        <input name="system.damage" type="text" value="{{system.damage}}" placeholder="e.g. 1d6 kinetic" {{#if locked}}disabled{{/if}} />
+      </div>
+      <div class="field-group" style="flex:1;">
+        <label>Range</label>
+        <input name="system.range" type="text" value="{{system.range}}" placeholder="e.g. Range 10" {{#if locked}}disabled{{/if}} />
+      </div>
+    </div>
+    <div class="field-group" style="margin-top:8px;">
+      <label>Tags</label>
+      <input name="system.tags" type="text" value="{{system.tags}}" placeholder="e.g. Reliable 2, AP" {{#if locked}}disabled{{/if}} />
+    </div>
+    <div class="field-row" style="gap:10px; display:flex; margin-top:8px;">
+      <div class="field-group" style="flex:1;">
+        <label>Accuracy</label>
+        <input name="system.accuracy" type="number" value="{{system.accuracy}}" min="0" style="width:60px;" {{#if locked}}disabled{{/if}} />
+      </div>
+      <div class="field-group" style="flex:1;">
+        <label>Difficulty</label>
+        <input name="system.difficulty" type="number" value="{{system.difficulty}}" min="0" style="width:60px;" {{#if locked}}disabled{{/if}} />
+      </div>
+      <div class="field-group" style="flex:1;">
+        <label>Attack Bonus</label>
+        <input name="system.attack_bonus" type="number" value="{{system.attack_bonus}}" style="width:60px;" {{#if locked}}disabled{{/if}} />
+      </div>
+    </div>
+    <div class="field-group" style="margin-top:8px;">
+      <label>Description</label>
+      <textarea name="system.description" rows="5" style="width:100%; resize:vertical;" {{#if locked}}disabled{{/if}}>{{system.description}}</textarea>
+    </div>
+    {{/if}}
+
+    {{!-- ══════════ ARMOR ══════════ --}}
+    {{#if (eq itemType "armor")}}
+    <div class="field-row" style="gap:10px; display:flex;">
+      <div class="field-group" style="flex:1;">
+        <label>HP Bonus</label>
+        <input name="system.hp_bonus" type="number" value="{{system.hp_bonus}}" {{#if locked}}disabled{{/if}} />
+      </div>
+      <div class="field-group" style="flex:1;">
+        <label>Armor</label>
+        <input name="system.armor" type="number" value="{{system.armor}}" {{#if locked}}disabled{{/if}} />
+      </div>
+    </div>
+    <div class="field-row" style="gap:10px; display:flex; margin-top:8px;">
+      <div class="field-group" style="flex:1;">
+        <label>Evasion</label>
+        <input name="system.evasion" type="number" value="{{system.evasion}}" {{#if locked}}disabled{{/if}} />
+      </div>
+      <div class="field-group" style="flex:1;">
+        <label>E-Def</label>
+        <input name="system.edef" type="number" value="{{system.edef}}" {{#if locked}}disabled{{/if}} />
+      </div>
+      <div class="field-group" style="flex:1;">
+        <label>Speed</label>
+        <input name="system.speed" type="number" value="{{system.speed}}" {{#if locked}}disabled{{/if}} />
+      </div>
+    </div>
+    <div class="field-group" style="margin-top:8px;">
+      <label>Tags</label>
+      <input name="system.tags" type="text" value="{{system.tags}}" placeholder="Tags" {{#if locked}}disabled{{/if}} />
+    </div>
+    <div class="field-group" style="margin-top:8px;">
+      <label>Description</label>
+      <textarea name="system.description" rows="5" style="width:100%; resize:vertical;" {{#if locked}}disabled{{/if}}>{{system.description}}</textarea>
+    </div>
+    {{/if}}
+
+    {{!-- ══════════ GEAR ══════════ --}}
+    {{#if (eq itemType "gear")}}
+    <div class="field-group">
+      <label>Uses</label>
+      <input name="system.uses" type="text" value="{{system.uses}}" placeholder="e.g. 3, Unlimited" {{#if locked}}disabled{{/if}} />
+    </div>
+    <div class="field-group" style="margin-top:8px;">
+      <label>Tags</label>
+      <input name="system.tags" type="text" value="{{system.tags}}" placeholder="Tags" {{#if locked}}disabled{{/if}} />
+    </div>
+    <div class="field-group" style="margin-top:8px;">
+      <label>Description</label>
+      <textarea name="system.description" rows="6" style="width:100%; resize:vertical;" {{#if locked}}disabled{{/if}}>{{system.description}}</textarea>
+    </div>
+    {{/if}}
+
+    {{!-- ══════════ SYSTEM ══════════ --}}
+    {{#if (eq itemType "system")}}
+    <div class="field-group">
+      <label>SP Cost</label>
+      <input name="system.sp" type="number" value="{{system.sp}}" min="0" style="width:60px;" {{#if locked}}disabled{{/if}} />
+    </div>
+    <div class="field-group" style="margin-top:8px;">
+      <label>Tags</label>
+      <input name="system.tags" type="text" value="{{system.tags}}" placeholder="Tags" {{#if locked}}disabled{{/if}} />
+    </div>
+    <div class="field-group" style="margin-top:8px;">
+      <label>Description</label>
+      <textarea name="system.description" rows="6" style="width:100%; resize:vertical;" {{#if locked}}disabled{{/if}}>{{system.description}}</textarea>
+    </div>
+    {{/if}}
+
+    {{!-- ══════════ FRAME TRAIT ══════════ --}}
+    {{#if (eq itemType "frame_trait")}}
+    <div class="field-group">
+      <label>Description</label>
+      <textarea name="system.description" rows="10" style="width:100%; resize:vertical;" {{#if locked}}disabled{{/if}}>{{system.description}}</textarea>
+    </div>
+    {{/if}}
+
+    {{!-- ══════════ CORE SYSTEM ══════════ --}}
+    {{#if (eq itemType "core_system")}}
+    <div class="field-group">
+      <label>Tags</label>
+      <input name="system.tags" type="text" value="{{system.tags}}" placeholder="e.g. Active (Quick), Limited 1" {{#if locked}}disabled{{/if}} />
+    </div>
+    <div class="field-group" style="margin-top:8px;">
+      <label>Description</label>
+      <textarea name="system.description" rows="8" style="width:100%; resize:vertical;" {{#if locked}}disabled{{/if}}>{{system.description}}</textarea>
+    </div>
+    {{/if}}
+
+  </section>
+</form>

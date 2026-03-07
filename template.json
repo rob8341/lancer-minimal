@@ -1,0 +1,135 @@
+{
+  "Actor": {
+    "types": ["pilot", "mech", "npc"],
+    "pilot": {
+      "pilot_name": "",
+      "background": "",
+      "bio": "",
+      "ll": 0,
+      "hp": { "value": 6, "max": 6 },
+      "armor": 0,
+      "evasion": 10,
+      "edef": 10,
+      "speed": 4,
+      "grit": 0,
+      "hull": 0,
+      "agility": 0,
+      "systems": 0,
+      "engineering": 0,
+      "triggers": [
+        { "name": "", "level": 2 },
+        { "name": "", "level": 2 },
+        { "name": "", "level": 2 },
+        { "name": "", "level": 2 }
+      ],
+      "licenses": [],
+      "mechLinks": []
+    },
+    "mech": {
+      "frame_name": "",
+      "pilot_name": "",
+      "size": 1,
+      "hull": 0,
+      "agility": 0,
+      "systems": 0,
+      "engineering": 0,
+      "hp": { "value": 10, "max": 10 },
+      "structure": { "value": 4, "max": 4 },
+      "stress": { "value": 4, "max": 4 },
+      "armor": 0,
+      "evasion": 8,
+      "edef": 8,
+      "speed": 4,
+      "sensors": 10,
+      "save": 10,
+      "pilot_grit": 0,
+      "tech_attack": 0,
+      "sp": { "value": 6, "max": 6 },
+      "heat": { "value": 0, "max": 6 },
+      "repairs": { "value": 0, "max": 5 },
+      "mounts": "",
+      "cp": 0,
+      "overshield": 0,
+      "core_system": "",
+      "notes": "",
+      "pilotLink": null
+    },
+    "npc": {
+      "tier": 1,
+      "hp": { "value": 10, "max": 10 },
+      "structure": { "value": 1, "max": 1 },
+      "heat": { "value": 0, "max": 6 },
+      "armor": 0,
+      "evasion": 10,
+      "edef": 10,
+      "speed": 4,
+      "size": 1,
+      "sensors": 10,
+      "save": 10,
+      "stress": { "value": 1, "max": 1 },
+      "hull": 0,
+      "agility": 0,
+      "systems": 0,
+      "engineering": 0,
+      "tactics": "",
+      "recharge_target": 5,
+      "recharge_ready": false
+    }
+  },
+  "Item": {
+    "types": ["weapon", "system", "talent", "armor", "gear", "core_bonus", "frame_trait", "core_system"],
+    "weapon": {
+      "mount": "",
+      "type": "",
+      "damage": "",
+      "range": "",
+      "tags": "",
+      "accuracy": 0,
+      "difficulty": 0,
+      "attack_bonus": 0,
+      "description": "",
+      "locked": false
+    },
+    "system": {
+      "sp": 0,
+      "tags": "",
+      "description": "",
+      "locked": false
+    },
+    "talent": {
+      "rank": 1,
+      "description": "",
+      "locked": false
+    },
+    "armor": {
+      "hp_bonus": 0,
+      "armor": 0,
+      "evasion": 0,
+      "edef": 0,
+      "speed": 0,
+      "tags": "",
+      "description": "",
+      "locked": false
+    },
+    "gear": {
+      "uses": "",
+      "tags": "",
+      "description": "",
+      "locked": false
+    },
+    "core_bonus": {
+      "source": "",
+      "description": "",
+      "locked": false
+    },
+    "frame_trait": {
+      "description": "",
+      "locked": false
+    },
+    "core_system": {
+      "tags": "",
+      "description": "",
+      "locked": false
+    }
+  }
+}

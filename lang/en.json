@@ -1,0 +1,19 @@
+{
+  "LANCER": {
+    "ActorTypes": {
+      "pilot": "Pilot",
+      "mech": "Mech",
+      "npc": "NPC"
+    },
+    "ItemTypes": {
+      "weapon": "Weapon",
+      "system": "System",
+      "talent": "Talent",
+      "armor": "Armor",
+      "gear": "Gear",
+      "core_bonus": "Core Bonus",
+      "frame_trait": "Frame Trait",
+      "core_system": "Core System"
+    }
+  }
+}

@@ -1,0 +1,385 @@
+{{!-- Lancer Minimal — Mech Sheet --}}
+<form class="lancer-minimal sheet actor mech-sheet" autocomplete="off">
+
+  {{!-- ===================== HEADER ===================== --}}
+  <header class="sheet-header">
+    <div class="mech-portrait">
+      <img class="profile-img" src="{{actor.img}}" data-edit="img"
+           title="{{actor.name}}" width="96" height="96" />
+      {{#if effects.length}}
+      <div class="status-effects-overlay">
+        {{#each effects}}
+        <img class="status-icon" src="{{this.icon}}" title="{{this.label}}" width="20" height="20" />
+        {{/each}}
+      </div>
+      {{/if}}
+    </div>
+
+    <div class="header-fields">
+      <div class="field-row">
+        <div class="field-group">
+          <label>Mech Name</label>
+          <input name="name" type="text" value="{{actor.name}}" placeholder="Mech Name" />
+        </div>
+        <div class="field-group">
+          <label>Frame</label>
+          <input name="system.frame_name" type="text" value="{{system.frame_name}}" placeholder="e.g. Everest, Blackbeard" />
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-group">
+          <label>Pilot</label>
+          {{#if pilotLink}}
+          <div class="pilot-link-slot filled" data-pilot-id="{{pilotLink.id}}" title="{{pilotLink.name}}">
+            <i class="fas fa-user"></i>
+            <span class="pilot-link-name">{{pilotLink.name}}</span>
+            <a class="pilot-link-clear" title="Remove link"><i class="fas fa-times"></i></a>
+          </div>
+          {{else}}
+          <div class="pilot-link-slot empty" title="Drop a pilot actor here">
+            <i class="fas fa-user-plus"></i> <span>Link Pilot</span>
+          </div>
+          {{/if}}
+        </div>
+        <div class="field-group compact" style="margin-left: auto;">
+          <label>Mech Size</label>
+          <input name="system.size" type="number" value="{{system.size}}" min="0.5" step="0.5" class="stat-input" style="width:32px;" />
+        </div>
+      </div>
+    </div>
+  </header>
+
+  {{!-- ===================== STATS BAR ===================== --}}
+  <div class="stats-bar">
+    <div class="stat-cell">
+      <span class="stat-label">Structure</span>
+      <div class="stat-pair">
+        <a class="structure-roll-btn" draggable="true" data-macro-type="structureRoll" title="Structure Damage Roll"><i class="fas fa-heart-broken"></i></a>
+        <input name="system.structure.value" type="number" value="{{system.structure.value}}" min="0" class="stat-input" title="Current Structure" />
+        <span class="stat-sep">/</span>
+        <input name="system.structure.max" type="number" value="{{system.structure.max}}" min="0" class="stat-input" title="Max Structure" />
+      </div>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-label">Stress</span>
+      <div class="stat-pair">
+        <a class="stress-roll-btn" draggable="true" data-macro-type="stressRoll" title="Overheat Roll"><i class="fas fa-fire"></i></a>
+        <input name="system.stress.value" type="number" value="{{system.stress.value}}" min="0" class="stat-input" title="Current Stress" />
+        <span class="stat-sep">/</span>
+        <input name="system.stress.max" type="number" value="{{system.stress.max}}" min="0" class="stat-input" title="Max Stress" />
+      </div>
+    </div>
+    <div class="stat-cell overshield-armor-group" style="flex: 0 0 auto; display: flex; flex-direction: row; align-items: center; gap: 8px; padding: 8px 12px; border-right: 1px solid var(--lnc-border-light);">
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <span class="stat-label">Overshield</span>
+        <input name="system.overshield" type="number" value="{{system.overshield}}" min="0" class="stat-input" title="Overshield — temporary HP pool" />
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <span class="stat-label">Armor</span>
+        <input name="system.armor" type="number" value="{{system.armor}}" min="0" class="stat-input" />
+      </div>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-label">Sensors</span>
+      <input name="system.sensors" type="number" value="{{system.sensors}}" min="0" class="stat-input" />
+    </div>
+    <div class="stat-cell">
+      <span class="stat-label">Save</span>
+      <input name="system.save" type="number" value="{{system.save}}" min="0" class="stat-input" />
+    </div>
+  </div>
+
+  {{!-- ===================== PILOT SKILLS LABEL ===================== --}}
+  <div style="margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); background: var(--lnc-bg-mid); border-bottom: 2px solid var(--lnc-accent);">
+    <div style="grid-column: 1 / 4; display: flex; align-items: center; padding: 8px 10px 4px;">
+      <h2 style="margin: 0; border: none; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--lnc-accent);"><i class="fas fa-cogs"></i> Pilot Skills</h2>
+    </div>
+    <div style="grid-column: 4; display: flex; align-items: center; justify-content: flex-end; padding: 8px 10px 4px; gap: 6px;">
+      <label style="margin: 0; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--lnc-accent);">Grit</label>
+      <input name="system.pilot_grit" type="number" value="{{system.pilot_grit}}" min="0" class="hase-input" style="width:40px;" title="Each point of GRIT adds +1 HP, +1 SP, +1 SAVE, +1 to melee/ranged attack rolls" />
+    </div>
+  </div>
+
+  {{!-- ===================== HASE COLUMNS ===================== --}}
+  <div class="hase-columns">
+    {{!-- HULL --}}
+    <div class="hase-column">
+      <div class="hase-header">
+        <span class="hase-label">Hull</span>
+        <div style="display: flex; align-items: center; gap: 4px;">
+          <a class="hase-roll-btn" draggable="true" data-macro-type="haseCheck" data-skill="hull" title="Roll Hull Check"><i class="fas fa-dice-d20"></i></a>
+          <input name="system.hull" type="number" value="{{system.hull}}" min="0" max="6" class="hase-input" title="+2 HP for each point of HULL. +1 REPAIR CAP for every two points of HULL." />
+        </div>
+      </div>
+      <div class="hase-stats">
+        <div class="hase-stat">
+          <span class="stat-label">HP</span>
+          <div class="stat-pair">
+            <input name="system.hp.value" type="number" value="{{system.hp.value}}" min="0" class="stat-input" title="Current HP" />
+            <span class="stat-sep">/</span>
+            <input name="system.hp.max" type="number" value="{{system.hp.max}}" min="0" class="stat-input" title="Max HP" />
+          </div>
+        </div>
+        <div class="hase-stat">
+          <span class="stat-label">Repairs</span>
+          <div class="stat-pair">
+            <input name="system.repairs.value" type="number" value="{{system.repairs.value}}" min="0" class="stat-input" title="Repairs Used" />
+            <span class="stat-sep">/</span>
+            <input name="system.repairs.max" type="number" value="{{system.repairs.max}}" min="0" class="stat-input" title="Repair Cap" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{!-- AGILITY --}}
+    <div class="hase-column">
+      <div class="hase-header">
+        <span class="hase-label">Agility</span>
+        <div style="display: flex; align-items: center; gap: 4px;">
+          <a class="hase-roll-btn" draggable="true" data-macro-type="haseCheck" data-skill="agility" title="Roll Agility Check"><i class="fas fa-dice-d20"></i></a>
+          <input name="system.agility" type="number" value="{{system.agility}}" min="0" max="6" class="hase-input" title="+1 EVASION for each point of AGILITY. +1 SPEED for every two points of AGILITY." />
+        </div>
+      </div>
+      <div class="hase-stats">
+        <div class="hase-stat">
+          <span class="stat-label">Evasion</span>
+          <input name="system.evasion" type="number" value="{{system.evasion}}" min="0" class="stat-input" />
+        </div>
+        <div class="hase-stat">
+          <span class="stat-label">Speed</span>
+          <input name="system.speed" type="number" value="{{system.speed}}" min="0" class="stat-input" />
+        </div>
+      </div>
+    </div>
+
+    {{!-- SYSTEMS --}}
+    <div class="hase-column">
+      <div class="hase-header">
+        <span class="hase-label">Systems</span>
+        <div style="display: flex; align-items: center; gap: 4px;">
+          <a class="hase-roll-btn" draggable="true" data-macro-type="haseCheck" data-skill="systems" title="Roll Systems Check"><i class="fas fa-dice-d20"></i></a>
+          <input name="system.systems" type="number" value="{{system.systems}}" min="0" max="6" class="hase-input" title="+1 E-DEFENSE and TECH ATTACK for each point of SYSTEMS. +1 SP for every two points of SYSTEMS." />
+        </div>
+      </div>
+      <div class="hase-stats">
+        <div class="hase-stat">
+          <span class="stat-label">E-Def</span>
+          <input name="system.edef" type="number" value="{{system.edef}}" min="0" class="stat-input" />
+        </div>
+        <div class="hase-stat">
+          <span class="stat-label">Tech Atk</span>
+          <div style="display: flex; align-items: center; gap: 2px;">
+            <a class="tech-attack-btn" draggable="true" data-macro-type="techAttack" title="Tech Attack" style="cursor: pointer; color: var(--lnc-accent);"><i class="fas fa-bolt"></i></a>
+            <input name="system.tech_attack" type="number" value="{{system.tech_attack}}" class="stat-input" />
+          </div>
+        </div>
+        <div class="hase-stat">
+          <span class="stat-label">SP</span>
+          <div class="stat-pair">
+            <input name="system.sp.value" type="number" value="{{system.sp.value}}" min="0" class="stat-input" title="Available System Points" />
+            <span class="stat-sep">/</span>
+            <input name="system.sp.max" type="number" value="{{system.sp.max}}" min="0" class="stat-input" title="Max System Points" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{!-- ENGINEERING --}}
+    <div class="hase-column">
+      <div class="hase-header">
+        <span class="hase-label">Engineering</span>
+        <div style="display: flex; align-items: center; gap: 4px;">
+          <a class="hase-roll-btn" draggable="true" data-macro-type="haseCheck" data-skill="engineering" title="Roll Engineering Check"><i class="fas fa-dice-d20"></i></a>
+          <input name="system.engineering" type="number" value="{{system.engineering}}" min="0" max="6" class="hase-input" title="+1 HEAT CAP for each point of ENGINEERING. +1 to the maximum uses of any limited systems or weapons for every two points of ENGINEERING." />
+        </div>
+      </div>
+      <div class="hase-stats">
+        <div class="hase-stat">
+          <span class="stat-label">Heat</span>
+          <div class="stat-pair">
+            <input name="system.heat.value" type="number" value="{{system.heat.value}}" min="0" class="stat-input" title="Current Heat" />
+            <span class="stat-sep">/</span>
+            <input name="system.heat.max" type="number" value="{{system.heat.max}}" min="0" class="stat-input" title="Heat Cap" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{!-- ===================== TABS ===================== --}}
+  <nav class="sheet-tabs tabs" data-group="primary">
+    <a class="item" data-tab="loadout"><i class="fas fa-crosshairs"></i> Loadout</a>
+    <a class="item" data-tab="frame"><i class="fas fa-cog"></i> Frame</a>
+    <a class="item" data-tab="notes"><i class="fas fa-sticky-note"></i> Notes</a>
+  </nav>
+
+  {{!-- ===================== BODY ===================== --}}
+  <section class="sheet-body">
+
+    {{!-- ============ LOADOUT TAB ============ --}}
+    <div class="tab" data-group="primary" data-tab="loadout">
+
+      {{!-- Mech Weapons --}}
+      <div class="section-header">
+        <h2><i class="fas fa-crosshairs"></i> Weapons</h2>
+        <a class="item-create btn-add" data-type="weapon"><i class="fas fa-plus"></i> Add</a>
+      </div>
+      <div class="item-list weapons-list">
+        {{#each weapons}}
+        <div class="item list-entry item-row" data-item-id="{{this._id}}">
+          <img class="item-img item-attack" src="{{this.img}}" title="Attack" />
+          <span class="item-name">{{this.name}}</span>
+          <div class="item-tags">
+            {{#if this.system.mount}}<span class="item-tag">{{this.system.mount}}</span>{{/if}}
+            {{#if this.system.type}}<span class="item-tag">{{this.system.type}}</span>{{/if}}
+            {{#if this.system.damage}}<span class="item-tag accent">{{this.system.damage}}</span>{{/if}}
+            {{#if this.system.range}}<span class="item-tag">{{this.system.range}}</span>{{/if}}
+            {{#if this.system.tags}}<span class="item-tag">{{this.system.tags}}</span>{{/if}}
+          </div>
+          <div class="item-controls">
+            <a class="item-attack" draggable="true" data-macro-type="weaponAttack" data-item-id="{{this._id}}" title="Attack"><i class="fas fa-crosshairs"></i></a>
+            <a class="item-chat" title="Send to Chat"><i class="fas fa-comment"></i></a>
+            <a class="item-lock" title="{{#if this.system.locked}}Unlock{{else}}Lock{{/if}}">
+              <i class="fas {{#if this.system.locked}}fa-lock{{else}}fa-lock-open{{/if}}"></i>
+            </a>
+            <a class="item-delete" title="Delete"><i class="fas fa-trash"></i></a>
+          </div>
+        </div>
+        {{else}}
+        <p class="empty-notice">No weapons — click <strong>+ Add</strong> or drag weapons here.</p>
+        {{/each}}
+      </div>
+
+      {{!-- Mech Systems --}}
+      <div class="section-header">
+        <h2><i class="fas fa-microchip"></i> Systems</h2>
+        <a class="item-create btn-add" data-type="system"><i class="fas fa-plus"></i> Add</a>
+      </div>
+      <div class="item-list systems-list">
+        {{#each systems}}
+        <div class="item list-entry item-row" data-item-id="{{this._id}}">
+          <img class="item-img" src="{{this.img}}" />
+          <span class="item-name">{{this.name}}</span>
+          <div class="item-tags">
+            {{#if this.system.sp}}<span class="item-tag accent">SP {{this.system.sp}}</span>{{/if}}
+            {{#if this.system.tags}}<span class="item-tag">{{this.system.tags}}</span>{{/if}}
+          </div>
+          <div class="item-controls">
+            <a class="item-chat" title="Send to Chat"><i class="fas fa-comment"></i></a>
+            <a class="item-lock" title="{{#if this.system.locked}}Unlock{{else}}Lock{{/if}}">
+              <i class="fas {{#if this.system.locked}}fa-lock{{else}}fa-lock-open{{/if}}"></i>
+            </a>
+            <a class="item-delete" title="Delete"><i class="fas fa-trash"></i></a>
+          </div>
+        </div>
+        {{else}}
+        <p class="empty-notice">No systems — click <strong>+ Add</strong> or drag systems here.</p>
+        {{/each}}
+      </div>
+
+      {{!-- Core Bonuses --}}
+      <div class="section-header">
+        <h2><i class="fas fa-gem"></i> Core Bonuses</h2>
+        <a class="item-create btn-add" data-type="core_bonus"><i class="fas fa-plus"></i> Add</a>
+      </div>
+      <div class="item-list core-bonuses-list">
+        {{#each coreBonuses}}
+        <div class="item list-entry item-row" data-item-id="{{this._id}}">
+          <img class="item-img" src="{{this.img}}" />
+          <span class="item-name">{{this.name}}</span>
+          <div class="item-controls">
+            <a class="item-chat" title="Send to Chat"><i class="fas fa-comment"></i></a>
+            <a class="item-lock" title="{{#if this.system.locked}}Unlock{{else}}Lock{{/if}}">
+              <i class="fas {{#if this.system.locked}}fa-lock{{else}}fa-lock-open{{/if}}"></i>
+            </a>
+            <a class="item-delete" title="Delete"><i class="fas fa-trash"></i></a>
+          </div>
+        </div>
+        {{else}}
+        <p class="empty-notice">No core bonuses — click <strong>+ Add</strong> or drag one here.</p>
+        {{/each}}
+      </div>
+
+    </div>{{!-- /loadout --}}
+
+    {{!-- ============ FRAME TAB ============ --}}
+    <div class="tab" data-group="primary" data-tab="frame">
+
+      <div class="section-header">
+        <h2><i class="fas fa-cubes"></i> Mounts</h2>
+      </div>
+      <div class="field-group">
+        <input name="system.mounts" type="text" value="{{system.mounts}}" placeholder="e.g. Main/Aux, Flex, Heavy" />
+      </div>
+
+      {{!-- Frame Traits as Items --}}
+      <div class="section-header">
+        <h2><i class="fas fa-star"></i> Frame Traits</h2>
+        <a class="item-create btn-add" data-type="frame_trait"><i class="fas fa-plus"></i> Add</a>
+      </div>
+      <div class="item-list traits-list">
+        {{#each frameTraits}}
+        <div class="item list-entry item-row" data-item-id="{{this._id}}">
+          <img class="item-img" src="{{this.img}}" />
+          <span class="item-name">{{this.name}}</span>
+          <div class="item-controls">
+            <a class="item-chat" title="Send to Chat"><i class="fas fa-comment"></i></a>
+            <a class="item-lock" title="{{#if this.system.locked}}Unlock{{else}}Lock{{/if}}">
+              <i class="fas {{#if this.system.locked}}fa-lock{{else}}fa-lock-open{{/if}}"></i>
+            </a>
+            <a class="item-delete" title="Delete"><i class="fas fa-trash"></i></a>
+          </div>
+        </div>
+        {{else}}
+        <p class="empty-notice">No frame traits — click <strong>+ Add</strong> or drag traits here.</p>
+        {{/each}}
+      </div>
+
+      {{!-- Core Power --}}
+      <div class="section-header" style="border-bottom: none; padding-bottom: 0; justify-content: flex-end; gap: 6px;">
+        <h2 style="border: none; margin: 0;"><i class="fas fa-bolt"></i> CP</h2>
+        <input name="system.cp" type="number" value="{{system.cp}}" min="0" class="hase-input" style="width:40px;" title="Core Power" />
+      </div>
+
+      {{!-- Core System as Item --}}
+      <div class="section-header">
+        <h2><i class="fas fa-bolt"></i> Core System</h2>
+        <a class="item-create btn-add" data-type="core_system"><i class="fas fa-plus"></i> Add</a>
+      </div>
+      <div class="item-list core-system-list">
+        {{#each coreSystems}}
+        <div class="item list-entry item-row" data-item-id="{{this._id}}">
+          <img class="item-img" src="{{this.img}}" />
+          <span class="item-name">{{this.name}}</span>
+          <div class="item-tags">
+            {{#if this.system.tags}}<span class="item-tag">{{this.system.tags}}</span>{{/if}}
+          </div>
+          <div class="item-controls">
+            <a class="item-chat" title="Send to Chat"><i class="fas fa-comment"></i></a>
+            <a class="item-lock" title="{{#if this.system.locked}}Unlock{{else}}Lock{{/if}}">
+              <i class="fas {{#if this.system.locked}}fa-lock{{else}}fa-lock-open{{/if}}"></i>
+            </a>
+            <a class="item-delete" title="Delete"><i class="fas fa-trash"></i></a>
+          </div>
+        </div>
+        {{else}}
+        <p class="empty-notice">No core system — click <strong>+ Add</strong> or drag one here.</p>
+        {{/each}}
+      </div>
+
+    </div>{{!-- /frame --}}
+
+    {{!-- ============ NOTES TAB ============ --}}
+    <div class="tab" data-group="primary" data-tab="notes">
+
+      <div class="section-header">
+        <h2><i class="fas fa-sticky-note"></i> Notes</h2>
+      </div>
+      <div class="field-group">
+        <textarea name="system.notes" rows="16" style="width:100%; resize:vertical;" placeholder="Additional notes about your mech, combat tactics, modifications...">{{system.notes}}</textarea>
+      </div>
+
+    </div>{{!-- /notes --}}
+
+  </section>
+</form>

@@ -1,0 +1,2064 @@
+/* ============================================================
+   Lancer Minimal — System Styles
+   Light theme with red frames & pale-blue inputs,
+   matching the official Lancer RPG aesthetic.
+   ============================================================ */
+
+:root {
+  --lnc-accent:       #cc2936;
+  --lnc-accent-light: #e63946;
+  --lnc-accent-dim:   #991f28;
+  --lnc-gold:         #cc2936;
+  --lnc-bg-dark:      #f0f4f8;
+  --lnc-bg-mid:       #f0f4f8;
+  --lnc-bg-light:     #e2e8f0;
+  --lnc-bg-input:     #dce6f1;
+  --lnc-text:         #1a1a1a;
+  --lnc-text-bright:  #000000;
+  --lnc-text-dim:     #64748b;
+  --lnc-border:       #cc2936;
+  --lnc-border-light: #d1d5db;
+  --lnc-danger:       #dc2626;
+}
+
+/* ── Sheet Container ────────────────────────────────────── */
+
+.lancer-minimal.pilot-sheet {
+  font-family: "Roboto", "Segoe UI", system-ui, sans-serif;
+  color: var(--lnc-text);
+  background: var(--lnc-bg-dark);
+}
+
+/* ── Header ─────────────────────────────────────────────── */
+
+.lancer-minimal.pilot-sheet .sheet-header {
+  display: flex;
+  gap: 16px;
+  padding: 14px 16px;
+  background: var(--lnc-bg-mid);
+  border-bottom: 3px solid var(--lnc-accent);
+}
+
+.lancer-minimal.pilot-sheet .pilot-portrait .profile-img {
+  width: 96px;
+  height: 96px;
+  border: 3px solid var(--lnc-accent);
+  border-radius: 6px;
+  object-fit: cover;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.lancer-minimal.pilot-sheet .pilot-portrait .profile-img:hover {
+  border-color: var(--lnc-accent-light);
+}
+
+.lancer-minimal.pilot-sheet .pilot-portrait {
+  position: relative;
+}
+
+.lancer-minimal.pilot-sheet .status-effects-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  padding: 2px;
+  justify-content: center;
+}
+
+.lancer-minimal.pilot-sheet .status-icon {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--lnc-accent);
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.lancer-minimal.pilot-sheet .header-fields {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  justify-content: center;
+}
+
+.lancer-minimal.pilot-sheet .field-row {
+  display: flex;
+  gap: 10px;
+}
+
+.lancer-minimal.pilot-sheet .field-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.lancer-minimal.pilot-sheet .field-group.full { flex: 1 0 100%; }
+
+.lancer-minimal.pilot-sheet .field-group label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--lnc-accent);
+  margin: 0;
+}
+
+.lancer-minimal.pilot-sheet .header-fields input[type="text"],
+.lancer-minimal.pilot-sheet .header-fields input[type="number"] {
+  background: var(--lnc-bg-input);
+  border: 1px solid var(--lnc-border-light);
+  border-radius: 4px;
+  color: var(--lnc-text-bright);
+  padding: 4px 8px;
+  font-size: 14px;
+  height: 26px;
+}
+
+.lancer-minimal.pilot-sheet .header-fields input[type="text"]:focus,
+.lancer-minimal.pilot-sheet .header-fields input[type="number"]:focus {
+  border-color: var(--lnc-accent);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(204, 41, 54, 0.15);
+}
+
+/* Compact field-group (LL, Grit) */
+.lancer-minimal.pilot-sheet .field-group.compact {
+  flex: 0 0 auto;
+  width: 70px;
+  align-items: center;
+}
+
+.lancer-minimal.pilot-sheet .field-group.compact input[type="number"] {
+  width: 100%;
+  text-align: center;
+  font-weight: 700;
+  -moz-appearance: textfield;
+}
+
+.lancer-minimal.pilot-sheet .field-group.compact input[type="number"]::-webkit-inner-spin-button,
+.lancer-minimal.pilot-sheet .field-group.compact input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* ── Stats Bar ──────────────────────────────────────────── */
+
+.lancer-minimal.pilot-sheet .stats-bar {
+  display: flex;
+  gap: 0;
+  background: var(--lnc-bg-mid);
+  border-bottom: 2px solid var(--lnc-accent);
+}
+
+.lancer-minimal.pilot-sheet .stat-cell {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 4px 6px;
+  border-right: 1px solid var(--lnc-border-light);
+}
+
+.lancer-minimal.pilot-sheet .stat-cell:last-child {
+  border-right: none;
+}
+
+.lancer-minimal.pilot-sheet .stat-label {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--lnc-accent);
+  margin-bottom: 2px;
+}
+
+.lancer-minimal.pilot-sheet .stat-pair {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.lancer-minimal.pilot-sheet .stat-sep {
+  color: var(--lnc-text-dim);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.lancer-minimal.pilot-sheet .stat-input {
+  width: 38px;
+  height: 28px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--lnc-text-bright);
+  background: var(--lnc-bg-input);
+  border: 1px solid var(--lnc-border-light);
+  border-radius: 3px;
+  -moz-appearance: textfield;
+}
+
+.lancer-minimal.pilot-sheet .stat-input:focus {
+  border-color: var(--lnc-accent);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(204, 41, 54, 0.15);
+}
+
+.lancer-minimal.pilot-sheet .stat-input::-webkit-inner-spin-button,
+.lancer-minimal.pilot-sheet .stat-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* ── Tabs ───────────────────────────────────────────────── */
+
+.lancer-minimal.pilot-sheet .sheet-tabs {
+  display: flex;
+  background: var(--lnc-bg-dark);
+  border-bottom: 2px solid var(--lnc-border-light);
+  padding: 0;
+  margin: 0;
+}
+
+.lancer-minimal.pilot-sheet .sheet-tabs .item {
+  flex: 1;
+  text-align: center;
+  padding: 8px 12px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--lnc-text-dim);
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.lancer-minimal.pilot-sheet .sheet-tabs .item:hover {
+  color: var(--lnc-text);
+  background: var(--lnc-bg-mid);
+}
+
+.lancer-minimal.pilot-sheet .sheet-tabs .item.active {
+  color: var(--lnc-accent);
+  border-bottom-color: var(--lnc-accent);
+}
+
+.lancer-minimal.pilot-sheet .sheet-tabs .item i { margin-right: 4px; }
+
+/* ── Sheet Body ─────────────────────────────────────────── */
+
+.lancer-minimal.pilot-sheet .sheet-body {
+  padding: 0;
+  overflow-y: auto;
+}
+
+.lancer-minimal.pilot-sheet .sheet-body .tab {
+  padding: 14px 16px 20px;
+}
+
+/* ── Section Headers ────────────────────────────────────── */
+
+.lancer-minimal.pilot-sheet .section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 16px 0 6px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid var(--lnc-accent);
+}
+
+.lancer-minimal.pilot-sheet .section-header:first-child { margin-top: 0; }
+
+.lancer-minimal.pilot-sheet .section-header h2 {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--lnc-accent);
+  margin: 0;
+  border: none;
+}
+
+.lancer-minimal.pilot-sheet .section-header h2 i {
+  margin-right: 6px;
+  font-size: 11px;
+}
+
+.lancer-minimal.pilot-sheet .slot-count {
+  font-size: 11px;
+  color: var(--lnc-text-dim);
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  margin-left: 4px;
+}
+
+/* ── Mech Skills Grid ───────────────────────────────────── */
+
+.lancer-minimal.pilot-sheet .hase-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.lancer-minimal.pilot-sheet .hase-skill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--lnc-bg-mid);
+  border: none;
+  border-radius: 6px;
+  padding: 10px 8px 8px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.lancer-minimal.pilot-sheet .hase-skill:hover {
+  box-shadow: none;
+}
+
+.lancer-minimal.pilot-sheet .hase-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--lnc-accent);
+  margin-bottom: 4px;
+}
+
+.lancer-minimal.pilot-sheet .hase-roll-btn {
+  cursor: pointer;
+  color: var(--lnc-accent);
+  font-size: 14px;
+  opacity: 0.6;
+  transition: opacity 0.15s, transform 0.15s;
+}
+
+.lancer-minimal.pilot-sheet .hase-roll-btn:hover {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+.lancer-minimal.mech-sheet .hase-roll-btn {
+  cursor: pointer;
+  color: var(--lnc-accent);
+  font-size: 14px;
+  opacity: 0.6;
+  transition: opacity 0.15s, transform 0.15s;
+}
+
+.lancer-minimal.mech-sheet .hase-roll-btn:hover {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+.lancer-minimal.mech-sheet .structure-roll-btn,
+.lancer-minimal.npc-sheet .structure-roll-btn {
+  cursor: pointer;
+  color: var(--lnc-accent);
+  font-size: 12px;
+  opacity: 0.6;
+  transition: opacity 0.15s, transform 0.15s;
+  margin-right: 2px;
+}
+
+.lancer-minimal.mech-sheet .structure-roll-btn:hover,
+.lancer-minimal.npc-sheet .structure-roll-btn:hover {
+  opacity: 1;
+  transform: scale(1.2);
+  color: var(--lnc-danger);
+}
+
+.lancer-minimal.mech-sheet .stress-roll-btn,
+.lancer-minimal.npc-sheet .stress-roll-btn {
+  cursor: pointer;
+  color: var(--lnc-danger);
+  font-size: 12px;
+  opacity: 0.7;
+  transition: opacity 0.15s, transform 0.15s;
+  margin-right: 2px;
+}
+
+.lancer-minimal.mech-sheet .stress-roll-btn:hover,
+.lancer-minimal.npc-sheet .stress-roll-btn:hover {
+  opacity: 1;
+  transform: scale(1.2);
+  color: var(--lnc-danger);
+}
+
+.lancer-minimal.pilot-sheet .hase-skill input[type="number"] {
+  width: 38px;
+  height: 28px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--lnc-text-bright);
+  background: var(--lnc-bg-input);
+  border: 2px solid var(--lnc-accent);
+  border-radius: 4px;
+  -moz-appearance: textfield;
+}
+
+.lancer-minimal.pilot-sheet .hase-skill input[type="number"]:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(204, 41, 54, 0.25);
+}
+
+.lancer-minimal.pilot-sheet .hase-skill input[type="number"]::-webkit-inner-spin-button,
+.lancer-minimal.pilot-sheet .hase-skill input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* ── List Entries (Triggers / Licenses / Items) ─────────── */
+
+.lancer-minimal.pilot-sheet .list-entry {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  min-height: 40px;
+  border-radius: 4px;
+  margin-bottom: 4px;
+}
+
+.lancer-minimal.pilot-sheet .list-entry:nth-child(odd) {
+  background: var(--lnc-bg-mid);
+}
+
+.lancer-minimal.pilot-sheet .list-entry:hover {
+  background: var(--lnc-bg-light);
+}
+
+/* Text input inside a list row */
+.lancer-minimal.pilot-sheet .entry-name {
+  flex: 1;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  color: var(--lnc-text);
+  padding: 3px 6px;
+  font-size: 13px;
+}
+
+.lancer-minimal.pilot-sheet .entry-name:focus {
+  background: var(--lnc-bg-input);
+  border-color: var(--lnc-border-light);
+  outline: none;
+}
+
+/* Numeric input inside a list row */
+.lancer-minimal.pilot-sheet .entry-value {
+  width: 44px;
+  text-align: center;
+  background: var(--lnc-bg-input);
+  border: 1px solid var(--lnc-border-light);
+  border-radius: 3px;
+  color: var(--lnc-accent);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 3px 4px;
+}
+
+.lancer-minimal.pilot-sheet .entry-value:focus {
+  border-color: var(--lnc-accent);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(204, 41, 54, 0.15);
+}
+
+/* Delete / control icon */
+.lancer-minimal.pilot-sheet .entry-control {
+  opacity: 0.4;
+  cursor: pointer;
+  color: var(--lnc-text-dim);
+  font-size: 12px;
+  transition: opacity 0.15s, color 0.15s;
+}
+
+.lancer-minimal.pilot-sheet .entry-control:hover {
+  opacity: 1;
+  color: var(--lnc-danger);
+}
+
+/* Trigger highlight button */
+.lancer-minimal.pilot-sheet .trigger-highlight {
+  cursor: pointer;
+  color: var(--lnc-text-dim);
+  font-size: 12px;
+  opacity: 0.4;
+  transition: opacity 0.15s, color 0.15s;
+}
+
+.lancer-minimal.pilot-sheet .trigger-highlight:hover {
+  opacity: 1;
+  color: var(--lnc-accent);
+}
+
+.lancer-minimal.pilot-sheet .trigger-entry.highlighted {
+  background: rgba(204, 41, 54, 0.15) !important;
+  border: 1px solid var(--lnc-accent);
+}
+
+.lancer-minimal.pilot-sheet .trigger-entry.highlighted .trigger-highlight {
+  opacity: 1;
+  color: var(--lnc-accent);
+}
+
+/* ── Add Buttons ────────────────────────────────────────── */
+
+.lancer-minimal.pilot-sheet .btn-add {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--lnc-accent);
+  cursor: pointer;
+  padding: 2px 8px;
+  border-radius: 3px;
+  border: 1px solid var(--lnc-accent);
+  transition: background 0.15s, color 0.15s;
+}
+
+.lancer-minimal.pilot-sheet .btn-add:hover {
+  background: var(--lnc-accent);
+  color: #ffffff;
+}
+
+.lancer-minimal.pilot-sheet .btn-add i { margin-right: 3px; }
+
+/* ── Mech Link Shortcuts ────────────────────────────────── */
+
+.lancer-minimal.pilot-sheet .mech-links {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex: 1;
+}
+
+.lancer-minimal.pilot-sheet .mech-link-slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 26px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.lancer-minimal.pilot-sheet .mech-link-slot.empty {
+  width: 28px;
+  min-width: 28px;
+  border: 1px dashed var(--lnc-border-light);
+  color: var(--lnc-text-dim);
+  background: transparent;
+  font-size: 12px;
+}
+
+.lancer-minimal.pilot-sheet .mech-link-slot.empty:hover {
+  border-color: var(--lnc-accent);
+  color: var(--lnc-accent);
+}
+
+.lancer-minimal.pilot-sheet .mech-link-slot.filled {
+  padding: 0 6px;
+  background: var(--lnc-bg-input);
+  border: 1px solid var(--lnc-accent);
+  color: var(--lnc-accent);
+  max-width: 120px;
+}
+
+.lancer-minimal.pilot-sheet .mech-link-slot.filled:hover {
+  background: var(--lnc-accent);
+  color: #ffffff;
+}
+
+.lancer-minimal.pilot-sheet .mech-link-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+
+.lancer-minimal.pilot-sheet .mech-link-delete {
+  opacity: 0.5;
+  font-size: 10px;
+  flex: 0 0 auto;
+  transition: opacity 0.15s, color 0.15s;
+  z-index: 1;
+}
+
+.lancer-minimal.pilot-sheet .mech-link-delete:hover {
+  opacity: 1;
+  color: var(--lnc-danger);
+}
+
+.lancer-minimal.pilot-sheet .mech-link-slot.filled:hover .mech-link-delete {
+  color: #ffffff;
+}
+
+/* ── Skill Check Button ─────────────────────────────────── */
+
+.lancer-minimal.pilot-sheet .btn-skill-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--lnc-accent);
+  cursor: pointer;
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 2px solid var(--lnc-accent);
+  background: transparent;
+  margin-left: auto;
+  transition: background 0.15s, color 0.15s;
+}
+
+.lancer-minimal.pilot-sheet .btn-skill-check:hover {
+  background: var(--lnc-accent);
+  color: #ffffff;
+}
+
+.lancer-minimal.pilot-sheet .btn-skill-check i {
+  font-size: 14px;
+}
+
+/* ── Owned-Item Rows ────────────────────────────────────── */
+
+.lancer-minimal.pilot-sheet .item-list .item.list-entry {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 6px 8px;
+  margin-bottom: 4px;
+}
+
+.lancer-minimal.pilot-sheet .item-img {
+  border: 1px solid var(--lnc-border-light);
+  border-radius: 4px;
+  object-fit: cover;
+  flex: 0 0 28px !important;
+  width: 28px !important;
+  height: 28px !important;
+  min-width: 28px !important;
+  min-height: 28px !important;
+  max-width: 28px !important;
+  max-height: 28px !important;
+}
+
+.lancer-minimal.pilot-sheet .item-name {
+  flex: 1;
+  font-size: 13px;
+  color: var(--lnc-text-bright);
+  font-weight: 500;
+  margin-right: auto;
+}
+
+.lancer-minimal.pilot-sheet .item-detail {
+  font-size: 11px;
+  color: var(--lnc-text-dim);
+  font-style: italic;
+  flex: 0 0 auto;
+  margin-left: auto;
+}
+
+.lancer-minimal.pilot-sheet .item-controls {
+  display: flex;
+  gap: 6px;
+  flex: 0 0 auto;
+  margin-left: 4px;
+}
+
+.lancer-minimal.pilot-sheet .item-controls a {
+  opacity: 0.4;
+  cursor: pointer;
+  color: var(--lnc-text-dim);
+  font-size: 12px;
+  transition: opacity 0.15s, color 0.15s;
+}
+
+.lancer-minimal.pilot-sheet .item-controls a:hover { opacity: 1; }
+.lancer-minimal.pilot-sheet .item-controls .item-edit:hover  { color: var(--lnc-accent); }
+.lancer-minimal.pilot-sheet .item-controls .item-lock:hover  { color: var(--lnc-accent); }
+.lancer-minimal.pilot-sheet .item-controls .item-chat:hover  { color: #3b82f6; }
+.lancer-minimal.pilot-sheet .item-controls .item-attack:hover { color: #f59e0b; }
+.lancer-minimal.pilot-sheet .item-controls .item-delete:hover { color: var(--lnc-danger); }
+
+/* ── Inline Item Tags (Weapons / Armor) ── */
+
+.lancer-minimal.pilot-sheet .item-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+  margin-left: auto;
+  margin-right: 8px;
+}
+
+.lancer-minimal.pilot-sheet .item-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--lnc-text);
+  background: var(--lnc-bg-input);
+  border: 1px solid var(--lnc-border-light);
+  border-radius: 3px;
+  padding: 1px 7px;
+  white-space: nowrap;
+}
+
+.lancer-minimal.pilot-sheet .item-tag.accent {
+  color: var(--lnc-accent);
+  border-color: var(--lnc-accent);
+  font-weight: 700;
+}
+
+/* ── Empty / placeholder notices ────────────────────────── */
+
+.lancer-minimal.pilot-sheet .empty-notice {
+  text-align: center;
+  color: var(--lnc-text-dim);
+  font-size: 12px;
+  font-style: italic;
+  padding: 14px 8px;
+  background: var(--lnc-bg-mid);
+  border: 1px dashed var(--lnc-border-light);
+  border-radius: 4px;
+  margin: 4px 0;
+}
+
+/* ── Loadout sections ───────────────────────────────────── */
+
+.lancer-minimal.pilot-sheet .loadout-section { margin-bottom: 4px; }
+
+/* ── Custom Scrollbar ───────────────────────────────────── */
+
+.lancer-minimal.pilot-sheet .sheet-body::-webkit-scrollbar       { width: 6px; }
+.lancer-minimal.pilot-sheet .sheet-body::-webkit-scrollbar-track  { background: var(--lnc-bg-dark); }
+.lancer-minimal.pilot-sheet .sheet-body::-webkit-scrollbar-thumb  { background: var(--lnc-border-light); border-radius: 3px; }
+.lancer-minimal.pilot-sheet .sheet-body::-webkit-scrollbar-thumb:hover { background: var(--lnc-accent); }
+
+/* ============================================================
+   Item Sheet Styles
+   ============================================================ */
+
+.lancer-minimal.sheet.item {
+  font-family: "Roboto", "Segoe UI", system-ui, sans-serif;
+  color: var(--lnc-text);
+  background: var(--lnc-bg-dark);
+}
+
+.lancer-minimal.sheet.item .sheet-header {
+  display: flex;
+  gap: 12px;
+  padding: 16px 14px;
+  background: var(--lnc-bg-mid);
+  border-bottom: 3px solid var(--lnc-accent);
+  align-items: center;
+}
+
+.lancer-minimal.sheet.item .sheet-header .profile-img {
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  min-height: 52px;
+  max-width: 52px;
+  max-height: 52px;
+  border: 2px solid var(--lnc-accent);
+  border-radius: 4px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.lancer-minimal.sheet.item .header-fields {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.lancer-minimal.sheet.item .header-fields .field-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.lancer-minimal.sheet.item .header-fields .field-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.lancer-minimal.sheet.item .header-fields .field-group label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--lnc-accent);
+  margin: 0;
+}
+
+.lancer-minimal.sheet.item .header-fields input[type="text"] {
+  background: var(--lnc-bg-input);
+  border: 1px solid var(--lnc-border-light);
+  border-radius: 4px;
+  color: var(--lnc-text-bright);
+  padding: 4px 8px;
+  font-size: 14px;
+  font-weight: 600;
+  height: 28px;
+}
+
+.lancer-minimal.sheet.item .header-fields input[type="text"]:focus {
+  border-color: var(--lnc-accent);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(204, 41, 54, 0.15);
+}
+
+.lancer-minimal.sheet.item .item-type-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #ffffff;
+  background: var(--lnc-accent);
+  padding: 2px 10px;
+  border-radius: 3px;
+}
+
+/* Item sheet body field groups */
+.lancer-minimal.sheet.item .sheet-body .field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.lancer-minimal.sheet.item .sheet-body .field-group label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--lnc-accent);
+  margin: 0;
+}
+
+.lancer-minimal.sheet.item .sheet-body input[type="text"],
+.lancer-minimal.sheet.item .sheet-body input[type="number"] {
+  background: var(--lnc-bg-input);
+  border: 1px solid var(--lnc-border-light);
+  border-radius: 4px;
+  color: var(--lnc-text-bright);
+  padding: 4px 8px;
+  font-size: 13px;
+  height: 26px;
+}
+
+.lancer-minimal.sheet.item .sheet-body input[type="text"]:focus,
+.lancer-minimal.sheet.item .sheet-body input[type="number"]:focus {
+  border-color: var(--lnc-accent);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(204, 41, 54, 0.15);
+}
+
+.lancer-minimal.sheet.item .sheet-body textarea {
+  background: var(--lnc-bg-input);
+  border: 1px solid var(--lnc-border-light);
+  border-radius: 4px;
+  color: var(--lnc-text-bright);
+  padding: 6px 8px;
+  font-size: 13px;
+  font-family: inherit;
+  line-height: 1.4;
+}
+
+.lancer-minimal.sheet.item .sheet-body textarea:focus {
+  border-color: var(--lnc-accent);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(204, 41, 54, 0.15);
+}
+
+/* ============================================================
+   Mech Sheet Styles
+   ============================================================ */
+
+.lancer-minimal.mech-sheet {
+  font-family: "Roboto", "Segoe UI", system-ui, sans-serif;
+  color: var(--lnc-text);
+  background: var(--lnc-bg-dark);
+}
+
+/* ── Mech Header ─────────────────────────────────────────── */
+
+.lancer-minimal.mech-sheet .sheet-header {
+  display: flex;
+  gap: 16px;
+  padding: 14px 16px;
+  background: var(--lnc-bg-mid);
+  border-bottom: 3px solid var(--lnc-accent);
+}
+
+.lancer-minimal.mech-sheet .mech-portrait .profile-img {
+  width: 96px;
+  height: 96px;
+  border: 3px solid var(--lnc-accent);
+  border-radius: 6px;
+  object-fit: cover;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.lancer-minimal.mech-sheet .mech-portrait .profile-img:hover {
+  border-color: var(--lnc-accent-light);
+}
+
+.lancer-minimal.mech-sheet .mech-portrait {
+  position: relative;
+}
+
+.lancer-minimal.mech-sheet .status-effects-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  padding: 2px;
+  justify-content: center;
+}
+
+.lancer-minimal.mech-sheet .status-icon {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--lnc-accent);
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.lancer-minimal.mech-sheet .header-fields {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  justify-content: center;
+}
+
+.lancer-minimal.mech-sheet .field-row {
+  display: flex;
+  gap: 10px;
+}
+
+.lancer-minimal.mech-sheet .field-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.lancer-minimal.mech-sheet .field-group label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--lnc-accent);
+  margin: 0;
+}
+
+.lancer-minimal.mech-sheet .header-fields input[type="text"],
+.lancer-minimal.mech-sheet .header-fields input[type="number"] {
+  background: var(--lnc-bg-input);
+  border: 1px solid var(--lnc-border-light);
+  border-radius: 4px;
+  color: var(--lnc-text-bright);
+  padding: 4px 8px;
+  font-size: 14px;
+  height: 26px;
+}
+
+.lancer-minimal.mech-sheet .header-fields input[type="text"]:focus,
+.lancer-minimal.mech-sheet .header-fields input[type="number"]:focus {
+  border-color: var(--lnc-accent);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(204, 41, 54, 0.15);
+}
+
+.lancer-minimal.mech-sheet .field-group.compact {
+  flex: 0 0 auto;
+  width: auto;
+  min-width: auto;
+}
+
+.lancer-minimal.mech-sheet .field-group.compact .stat-input {
+  width: 32px;
+  height: 26px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--lnc-text-bright);
+  background: var(--lnc-bg-input);
+  border: 1px solid var(--lnc-border-light);
+  border-radius: 3px;
+  padding: 0;
+  -moz-appearance: textfield;
+}
+
+.lancer-minimal.mech-sheet .field-group.compact .stat-input:focus {
+  border-color: var(--lnc-accent);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(204, 41, 54, 0.15);
+}
+
+.lancer-minimal.mech-sheet .field-group.compact .stat-input::-webkit-inner-spin-button,
+.lancer-minimal.mech-sheet .field-group.compact .stat-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.lancer-minimal.mech-sheet .field-group.compact input[type="number"] {
+  width: 100%;
+  text-align: center;
+  font-weight: 700;
+  -moz-appearance: textfield;
+}
+
+.lancer-minimal.mech-sheet .field-group.compact .stat-pair {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.lancer-minimal.mech-sheet .field-group.compact .stat-pair .stat-input {
+  width: 32px;
+  height: 26px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--lnc-text-bright);
+  background: var(--lnc-bg-input);
+  border: 1px solid var(--lnc-border-light);
+  border-radius: 3px;
+  padding: 0;
+  -moz-appearance: textfield;
+}
+
+.lancer-minimal.mech-sheet .field-group.compact .stat-pair .stat-input:focus {
+  border-color: var(--lnc-accent);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(204, 41, 54, 0.15);
+}
+
+.lancer-minimal.mech-sheet .field-group.compact .stat-pair .stat-input::-webkit-inner-spin-button,
+.lancer-minimal.mech-sheet .field-group.compact .stat-pair .stat-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.lancer-minimal.mech-sheet .field-group.compact .stat-sep {
+  color: var(--lnc-text-dim);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.lancer-minimal.mech-sheet .field-group.compact input[type="number"]::-webkit-inner-spin-button,
+.lancer-minimal.mech-sheet .field-group.compact input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* ── Mech Stats Bar ─────────────────────────────────────── */
+
+.lancer-minimal.mech-sheet .stats-bar {
+  display: flex;
+  gap: 0;
+  background: var(--lnc-bg-mid);
+  border-bottom: 2px solid var(--lnc-accent);
+}
+
+.lancer-minimal.mech-sheet .stat-cell {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 4px 6px;
+  border-right: 1px solid var(--lnc-border-light);
+}
+
+.lancer-minimal.mech-sheet .stat-cell:last-child {
+  border-right: none;
+}
+
+/* Overshield and Armor grouped together without divider */
+.lancer-minimal.mech-sheet .stats-bar .stat-cell.overshield-cell {
+  border-right: none;
+  padding-right: 0;
+  flex: 0 0 auto;
+}
+
+.lancer-minimal.mech-sheet .stats-bar .stat-cell.armor-cell {
+  padding-left: 4px;
+  flex: 0 0 auto;
+}
+
+/* Equal spacing for all other stat cells in the stats bar */
+.lancer-minimal.mech-sheet .stats-bar .stat-cell {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.lancer-minimal.mech-sheet .stat-label {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--lnc-accent);
+  margin-bottom: 2px;
+}
+
+.lancer-minimal.mech-sheet .stat-pair {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.lancer-minimal.mech-sheet .stat-sep {
+  color: var(--lnc-text-dim);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.lancer-minimal.mech-sheet .stats-bar .stat-input {
+  width: 38px;
+  height: 28px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--lnc-text-bright);
+  background: var(--lnc-bg-input);
+  border: 1px solid var(--lnc-border-light);
+  border-radius: 3px;
+  -moz-appearance: textfield;
+}
+
+.lancer-minimal.mech-sheet .stats-bar .stat-input:focus {
+  border-color: var(--lnc-accent);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(204, 41, 54, 0.15);
+}
+
+.lancer-minimal.mech-sheet .stats-bar .stat-input::-webkit-inner-spin-button,
+.lancer-minimal.mech-sheet .stats-bar .stat-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* ── HASE Columns Layout ─────────────────────────────────── */
+
+.lancer-minimal.mech-sheet .hase-columns {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  background: var(--lnc-bg-mid);
+  border-bottom: 2px solid var(--lnc-accent);
+}
+
+.lancer-minimal.mech-sheet .hase-column {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--lnc-border-light);
+  padding: 8px 10px 10px;
+}
+
+.lancer-minimal.mech-sheet .hase-column:last-child {
+  border-right: none;
+}
+
+.lancer-minimal.mech-sheet .hase-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid var(--lnc-accent);
+}
+
+.lancer-minimal.mech-sheet .hase-label {
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--lnc-accent);
+}
+
+.lancer-minimal.mech-sheet .hase-input {
+  width: 40px;
+  height: 28px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--lnc-text-bright);
+  background: var(--lnc-bg-input);
+  border: 2px solid var(--lnc-accent);
+  border-radius: 4px;
+  -moz-appearance: textfield;
+}
+
+.lancer-minimal.mech-sheet .hase-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(204, 41, 54, 0.25);
+}
+
+.lancer-minimal.mech-sheet .hase-input::-webkit-inner-spin-button,
+.lancer-minimal.mech-sheet .hase-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.lancer-minimal.mech-sheet .hase-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.lancer-minimal.mech-sheet .hase-stat {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.lancer-minimal.mech-sheet .hase-stat .stat-label {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--lnc-accent);
+  white-space: nowrap;
+}
+
+.lancer-minimal.mech-sheet .hase-stat .stat-pair {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.lancer-minimal.mech-sheet .hase-stat .stat-sep {
+  color: var(--lnc-text-dim);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.lancer-minimal.mech-sheet .hase-stat .stat-input {
+  width: 32px;
+  height: 24px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--lnc-text-bright);
+  background: var(--lnc-bg-input);
+  border: 1px solid var(--lnc-border-light);
+  border-radius: 3px;
+  -moz-appearance: textfield;
+}
+
+.lancer-minimal.mech-sheet .hase-stat .stat-input:focus {
+  border-color: var(--lnc-accent);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(204, 41, 54, 0.15);
+}
+
+.lancer-minimal.mech-sheet .hase-stat .stat-input::-webkit-inner-spin-button,
+.lancer-minimal.mech-sheet .hase-stat .stat-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* ── Mech Tabs ───────────────────────────────────────────── */
+
+.lancer-minimal.mech-sheet .sheet-tabs {
+  display: flex;
+  background: var(--lnc-bg-dark);
+  border-bottom: 2px solid var(--lnc-border-light);
+  padding: 0;
+  margin: 0;
+}
+
+.lancer-minimal.mech-sheet .sheet-tabs .item {
+  flex: 1;
+  text-align: center;
+  padding: 8px 12px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--lnc-text-dim);
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.lancer-minimal.mech-sheet .sheet-tabs .item:hover {
+  color: var(--lnc-text);
+  background: var(--lnc-bg-mid);
+}
+
+.lancer-minimal.mech-sheet .sheet-tabs .item.active {
+  color: var(--lnc-accent);
+  border-bottom-color: var(--lnc-accent);
+}
+
+.lancer-minimal.mech-sheet .sheet-tabs .item i { margin-right: 4px; }
+
+/* ── Mech Sheet Body ─────────────────────────────────────── */
+
+.lancer-minimal.mech-sheet .sheet-body {
+  padding: 0;
+  overflow-y: auto;
+}
+
+.lancer-minimal.mech-sheet .sheet-body .tab {
+  padding: 14px 16px 20px;
+}
+
+/* ── Section Headers ────────────────────────────────────── */
+
+.lancer-minimal.mech-sheet .section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 16px 0 6px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid var(--lnc-accent);
+}
+
+.lancer-minimal.mech-sheet .section-header:first-child { margin-top: 0; }
+
+.lancer-minimal.mech-sheet .section-header h2 {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--lnc-accent);
+  margin: 0;
+  border: none;
+}
+
+.lancer-minimal.mech-sheet .section-header h2 i {
+  margin-right: 6px;
+  font-size: 11px;
+}
+
+/* ── Add Buttons ────────────────────────────────────────── */
+
+.lancer-minimal.mech-sheet .btn-add {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--lnc-accent);
+  cursor: pointer;
+  padding: 2px 8px;
+  border-radius: 3px;
+  border: 1px solid var(--lnc-accent);
+  transition: background 0.15s, color 0.15s;
+}
+
+.lancer-minimal.mech-sheet .btn-add:hover {
+  background: var(--lnc-accent);
+  color: #ffffff;
+}
+
+.lancer-minimal.mech-sheet .btn-add i { margin-right: 3px; }
+
+/* ── Owned-Item Rows ────────────────────────────────────── */
+
+.lancer-minimal.mech-sheet .item-list .item.list-entry {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  min-height: 40px;
+  border-radius: 4px;
+  margin-bottom: 4px;
+  cursor: pointer;
+}
+
+.lancer-minimal.mech-sheet .item-list .item.list-entry:nth-child(odd) {
+  background: var(--lnc-bg-mid);
+}
+
+.lancer-minimal.mech-sheet .item-list .item.list-entry:hover {
+  background: var(--lnc-bg-light);
+}
+
+.lancer-minimal.mech-sheet .item-img {
+  border: 1px solid var(--lnc-border-light);
+  border-radius: 4px;
+  object-fit: cover;
+  flex: 0 0 28px !important;
+  width: 28px !important;
+  height: 28px !important;
+  min-width: 28px !important;
+  min-height: 28px !important;
+  max-width: 28px !important;
+  max-height: 28px !important;
+}
+
+.lancer-minimal.mech-sheet .item-name {
+  flex: 1;
+  font-size: 13px;
+  color: var(--lnc-text-bright);
+  font-weight: 500;
+  margin-right: auto;
+}
+
+.lancer-minimal.mech-sheet .item-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+  margin-left: auto;
+  margin-right: 8px;
+}
+
+.lancer-minimal.mech-sheet .item-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--lnc-text);
+  background: var(--lnc-bg-input);
+  border: 1px solid var(--lnc-border-light);
+  border-radius: 3px;
+  padding: 1px 7px;
+  white-space: nowrap;
+}
+
+.lancer-minimal.mech-sheet .item-tag.accent {
+  color: var(--lnc-accent);
+  border-color: var(--lnc-accent);
+  font-weight: 700;
+}
+
+.lancer-minimal.mech-sheet .item-controls {
+  display: flex;
+  gap: 6px;
+  flex: 0 0 auto;
+  margin-left: 4px;
+}
+
+.lancer-minimal.mech-sheet .item-controls a {
+  opacity: 0.4;
+  cursor: pointer;
+  color: var(--lnc-text-dim);
+  font-size: 12px;
+  transition: opacity 0.15s, color 0.15s;
+}
+
+.lancer-minimal.mech-sheet .item-controls a:hover { opacity: 1; }
+.lancer-minimal.mech-sheet .item-controls .item-lock:hover { color: var(--lnc-accent); }
+.lancer-minimal.mech-sheet .item-controls .item-chat:hover { color: #3b82f6; }
+.lancer-minimal.mech-sheet .item-controls .item-attack:hover { color: #f59e0b; }
+.lancer-minimal.mech-sheet .item-controls .item-delete:hover { color: var(--lnc-danger); }
+
+/* ── Empty / placeholder notices ────────────────────────── */
+
+.lancer-minimal.mech-sheet .empty-notice {
+  text-align: center;
+  color: var(--lnc-text-dim);
+  font-size: 12px;
+  font-style: italic;
+  padding: 14px 8px;
+  background: var(--lnc-bg-mid);
+  border: 1px dashed var(--lnc-border-light);
+  border-radius: 4px;
+  margin: 4px 0;
+}
+
+/* ── Frame Tab Fields ───────────────────────────────────── */
+
+.lancer-minimal.mech-sheet .field-group input[type="text"],
+.lancer-minimal.mech-sheet .field-group textarea {
+  background: var(--lnc-bg-input);
+  border: 1px solid var(--lnc-border-light);
+  border-radius: 4px;
+  color: var(--lnc-text-bright);
+  padding: 6px 8px;
+  font-size: 13px;
+  font-family: inherit;
+  line-height: 1.4;
+}
+
+.lancer-minimal.mech-sheet .field-group input[type="text"]:focus,
+.lancer-minimal.mech-sheet .field-group textarea:focus {
+  border-color: var(--lnc-accent);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(204, 41, 54, 0.15);
+}
+
+/* ── Custom Scrollbar ───────────────────────────────────── */
+
+.lancer-minimal.mech-sheet .sheet-body::-webkit-scrollbar       { width: 6px; }
+.lancer-minimal.mech-sheet .sheet-body::-webkit-scrollbar-track  { background: var(--lnc-bg-dark); }
+.lancer-minimal.mech-sheet .sheet-body::-webkit-scrollbar-thumb  { background: var(--lnc-border-light); border-radius: 3px; }
+.lancer-minimal.mech-sheet .sheet-body::-webkit-scrollbar-thumb:hover { background: var(--lnc-accent); }
+
+/* ── Pilot Link Slot ────────────────────────────────────── */
+
+.lancer-minimal.mech-sheet .field-group:has(.pilot-link-slot) {
+  flex: 0 0 auto;
+  width: auto;
+  max-width: 50%;
+}
+
+.lancer-minimal.mech-sheet .pilot-link-slot {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 26px;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.lancer-minimal.mech-sheet .pilot-link-slot.empty {
+  border: 1px dashed var(--lnc-border-light);
+  color: var(--lnc-text-dim);
+  background: transparent;
+  padding: 0 10px;
+  justify-content: center;
+}
+
+.lancer-minimal.mech-sheet .pilot-link-slot.empty:hover {
+  border-color: var(--lnc-accent);
+  color: var(--lnc-accent);
+}
+
+.lancer-minimal.mech-sheet .pilot-link-slot.filled {
+  padding: 0 10px;
+  background: var(--lnc-bg-input);
+  border: 1px solid var(--lnc-accent);
+  color: var(--lnc-accent);
+  font-weight: 600;
+}
+
+.lancer-minimal.mech-sheet .pilot-link-slot.filled:hover {
+  background: var(--lnc-accent);
+  color: #ffffff;
+}
+
+.lancer-minimal.mech-sheet .pilot-link-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lancer-minimal.mech-sheet .pilot-link-clear {
+  opacity: 0.5;
+  font-size: 11px;
+  transition: opacity 0.15s, color 0.15s;
+}
+
+.lancer-minimal.mech-sheet .pilot-link-clear:hover {
+  opacity: 1;
+  color: var(--lnc-danger);
+}
+
+.lancer-minimal.mech-sheet .pilot-link-slot.filled:hover .pilot-link-clear {
+  color: #ffffff;
+}
+
+/* ============================================================
+   NPC Sheet Styles
+   ============================================================ */
+
+.lancer-minimal.npc-sheet {
+  font-family: "Roboto", "Segoe UI", system-ui, sans-serif;
+  color: var(--lnc-text);
+  background: var(--lnc-bg-dark);
+}
+
+.lancer-minimal.npc-sheet .sheet-header {
+  display: flex;
+  gap: 14px;
+  padding: 12px 14px;
+  background: var(--lnc-bg-mid);
+  border-bottom: 3px solid var(--lnc-accent);
+}
+
+.lancer-minimal.npc-sheet .npc-portrait {
+  position: relative;
+}
+
+.lancer-minimal.npc-sheet .npc-portrait .profile-img {
+  width: 80px;
+  height: 80px;
+  border: 3px solid var(--lnc-accent);
+  border-radius: 6px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.lancer-minimal.npc-sheet .status-effects-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  padding: 2px;
+  justify-content: center;
+}
+
+.lancer-minimal.npc-sheet .status-icon {
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--lnc-accent);
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.lancer-minimal.npc-sheet .header-fields {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  justify-content: center;
+}
+
+.lancer-minimal.npc-sheet .field-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.lancer-minimal.npc-sheet .field-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.lancer-minimal.npc-sheet .field-group.compact {
+  flex: 0 0 auto;
+  width: 60px;
+}
+
+.lancer-minimal.npc-sheet .field-group label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--lnc-accent);
+  margin: 0;
+}
+
+.lancer-minimal.npc-sheet .header-fields input[type="text"] {
+  background: var(--lnc-bg-input);
+  border: 1px solid var(--lnc-border-light);
+  border-radius: 4px;
+  color: var(--lnc-text-bright);
+  padding: 4px 8px;
+  font-size: 14px;
+  height: 26px;
+}
+
+.lancer-minimal.npc-sheet .btn-scan {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--lnc-accent);
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--lnc-accent);
+  background: transparent;
+  margin-left: auto;
+  transition: background 0.15s, color 0.15s;
+}
+
+.lancer-minimal.npc-sheet .btn-scan:hover {
+  background: var(--lnc-accent);
+  color: #ffffff;
+}
+
+/* NPC Recharge Roll */
+.lancer-minimal.npc-sheet .recharge-roll-btn {
+  cursor: pointer;
+  color: var(--lnc-accent);
+  font-size: 14px;
+  opacity: 0.7;
+  transition: opacity 0.15s, transform 0.15s, color 0.15s;
+}
+
+.lancer-minimal.npc-sheet .recharge-roll-btn:hover {
+  opacity: 1;
+  transform: scale(1.2);
+  color: #2a9d2a;
+}
+
+.lancer-minimal.npc-sheet .header-fields select {
+  background: var(--lnc-bg-input);
+  border: 2px solid var(--lnc-accent);
+  border-radius: 4px;
+  color: var(--lnc-text-bright);
+  padding: 2px 4px;
+  font-size: 14px;
+  font-weight: 700;
+  height: 26px;
+  text-align: center;
+}
+
+/* NPC Stats Bar */
+.lancer-minimal.npc-sheet .stats-bar {
+  display: flex;
+  gap: 0;
+  background: var(--lnc-bg-mid);
+  border-bottom: 2px solid var(--lnc-accent);
+}
+
+.lancer-minimal.npc-sheet .stat-cell {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 4px;
+  border-right: 1px solid var(--lnc-border-light);
+}
+
+.lancer-minimal.npc-sheet .stat-cell:last-child {
+  border-right: none;
+}
+
+.lancer-minimal.npc-sheet .stat-label {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--lnc-accent);
+  margin-bottom: 2px;
+}
+
+.lancer-minimal.npc-sheet .stat-pair {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.lancer-minimal.npc-sheet .stat-sep {
+  color: var(--lnc-text-dim);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.lancer-minimal.npc-sheet .stat-input {
+  width: 34px;
+  height: 24px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--lnc-text-bright);
+  background: var(--lnc-bg-input);
+  border: 1px solid var(--lnc-border-light);
+  border-radius: 3px;
+  -moz-appearance: textfield;
+}
+
+.lancer-minimal.npc-sheet .stat-input::-webkit-inner-spin-button,
+.lancer-minimal.npc-sheet .stat-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* NPC HASE Bar */
+.lancer-minimal.npc-sheet .hase-bar {
+  display: flex;
+  gap: 0;
+  background: var(--lnc-bg-mid);
+  border-bottom: 2px solid var(--lnc-accent);
+}
+
+.lancer-minimal.npc-sheet .hase-cell {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 4px;
+  border-right: 1px solid var(--lnc-border-light);
+}
+
+.lancer-minimal.npc-sheet .hase-cell:last-child {
+  border-right: none;
+}
+
+.lancer-minimal.npc-sheet .hase-label {
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--lnc-accent);
+  margin-bottom: 2px;
+}
+
+.lancer-minimal.npc-sheet .hase-input {
+  width: 36px;
+  height: 24px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--lnc-text-bright);
+  background: var(--lnc-bg-input);
+  border: 2px solid var(--lnc-accent);
+  border-radius: 4px;
+  -moz-appearance: textfield;
+}
+
+.lancer-minimal.npc-sheet .hase-input::-webkit-inner-spin-button,
+.lancer-minimal.npc-sheet .hase-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.lancer-minimal.npc-sheet .hase-roll-btn {
+  cursor: pointer;
+  color: var(--lnc-accent);
+  font-size: 12px;
+  opacity: 0.6;
+  transition: opacity 0.15s, transform 0.15s;
+}
+
+.lancer-minimal.npc-sheet .hase-roll-btn:hover {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+/* NPC Tabs */
+.lancer-minimal.npc-sheet .sheet-tabs {
+  display: flex;
+  background: var(--lnc-bg-dark);
+  border-bottom: 2px solid var(--lnc-border-light);
+  padding: 0;
+  margin: 0;
+}
+
+.lancer-minimal.npc-sheet .sheet-tabs .item {
+  flex: 1;
+  text-align: center;
+  padding: 6px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--lnc-text-dim);
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.lancer-minimal.npc-sheet .sheet-tabs .item:hover {
+  color: var(--lnc-text);
+  background: var(--lnc-bg-mid);
+}
+
+.lancer-minimal.npc-sheet .sheet-tabs .item.active {
+  color: var(--lnc-accent);
+  border-bottom-color: var(--lnc-accent);
+}
+
+.lancer-minimal.npc-sheet .sheet-tabs .item i { margin-right: 4px; }
+
+/* NPC Sheet Body */
+.lancer-minimal.npc-sheet .sheet-body {
+  padding: 0;
+  overflow-y: auto;
+}
+
+.lancer-minimal.npc-sheet .sheet-body .tab {
+  padding: 12px 14px 16px;
+}
+
+/* NPC Section Headers */
+.lancer-minimal.npc-sheet .section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 14px 0 6px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid var(--lnc-accent);
+}
+
+.lancer-minimal.npc-sheet .section-header:first-child { margin-top: 0; }
+
+.lancer-minimal.npc-sheet .section-header h2 {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--lnc-accent);
+  margin: 0;
+  border: none;
+}
+
+.lancer-minimal.npc-sheet .section-header h2 i {
+  margin-right: 5px;
+  font-size: 10px;
+}
+
+/* NPC Add Buttons */
+.lancer-minimal.npc-sheet .btn-add {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--lnc-accent);
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 3px;
+  border: 1px solid var(--lnc-accent);
+  transition: background 0.15s, color 0.15s;
+}
+
+.lancer-minimal.npc-sheet .btn-add:hover {
+  background: var(--lnc-accent);
+  color: #ffffff;
+}
+
+.lancer-minimal.npc-sheet .btn-add i { margin-right: 2px; }
+
+/* NPC Item Rows */
+.lancer-minimal.npc-sheet .item-list .item.list-entry {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 6px;
+  min-height: 36px;
+  border-radius: 4px;
+  margin-bottom: 3px;
+  cursor: pointer;
+}
+
+.lancer-minimal.npc-sheet .item-list .item.list-entry:nth-child(odd) {
+  background: var(--lnc-bg-mid);
+}
+
+.lancer-minimal.npc-sheet .item-list .item.list-entry:hover {
+  background: var(--lnc-bg-light);
+}
+
+.lancer-minimal.npc-sheet .item-img {
+  border: 1px solid var(--lnc-border-light);
+  border-radius: 3px;
+  object-fit: cover;
+  flex: 0 0 24px !important;
+  width: 24px !important;
+  height: 24px !important;
+  min-width: 24px !important;
+  min-height: 24px !important;
+  max-width: 24px !important;
+  max-height: 24px !important;
+}
+
+.lancer-minimal.npc-sheet .item-name {
+  flex: 1;
+  font-size: 12px;
+  color: var(--lnc-text-bright);
+  font-weight: 500;
+  margin-right: auto;
+}
+
+.lancer-minimal.npc-sheet .item-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  align-items: center;
+  margin-left: auto;
+  margin-right: 6px;
+}
+
+.lancer-minimal.npc-sheet .item-tag {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--lnc-text);
+  background: var(--lnc-bg-input);
+  border: 1px solid var(--lnc-border-light);
+  border-radius: 2px;
+  padding: 1px 5px;
+  white-space: nowrap;
+}
+
+.lancer-minimal.npc-sheet .item-tag.accent {
+  color: var(--lnc-accent);
+  border-color: var(--lnc-accent);
+  font-weight: 700;
+}
+
+.lancer-minimal.npc-sheet .item-controls {
+  display: flex;
+  gap: 5px;
+  flex: 0 0 auto;
+  margin-left: 3px;
+}
+
+.lancer-minimal.npc-sheet .item-controls a {
+  opacity: 0.4;
+  cursor: pointer;
+  color: var(--lnc-text-dim);
+  font-size: 11px;
+  transition: opacity 0.15s, color 0.15s;
+}
+
+.lancer-minimal.npc-sheet .item-controls a:hover { opacity: 1; }
+.lancer-minimal.npc-sheet .item-controls .item-lock:hover { color: var(--lnc-accent); }
+.lancer-minimal.npc-sheet .item-controls .item-chat:hover { color: #3b82f6; }
+.lancer-minimal.npc-sheet .item-controls .item-attack:hover { color: #f59e0b; }
+.lancer-minimal.npc-sheet .item-controls .item-delete:hover { color: var(--lnc-danger); }
+
+/* NPC Empty Notices */
+.lancer-minimal.npc-sheet .empty-notice {
+  text-align: center;
+  color: var(--lnc-text-dim);
+  font-size: 11px;
+  font-style: italic;
+  padding: 10px 6px;
+  background: var(--lnc-bg-mid);
+  border: 1px dashed var(--lnc-border-light);
+  border-radius: 4px;
+  margin: 3px 0;
+}
+
+/* NPC Tactics textarea */
+.lancer-minimal.npc-sheet .field-group textarea {
+  background: var(--lnc-bg-input);
+  border: 1px solid var(--lnc-border-light);
+  border-radius: 4px;
+  color: var(--lnc-text-bright);
+  padding: 6px 8px;
+  font-size: 12px;
+  font-family: inherit;
+  line-height: 1.4;
+}
+
+.lancer-minimal.npc-sheet .field-group textarea:focus {
+  border-color: var(--lnc-accent);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(204, 41, 54, 0.15);
+}
+
+/* NPC Scrollbar */
+.lancer-minimal.npc-sheet .sheet-body::-webkit-scrollbar       { width: 5px; }
+.lancer-minimal.npc-sheet .sheet-body::-webkit-scrollbar-track  { background: var(--lnc-bg-dark); }
+.lancer-minimal.npc-sheet .sheet-body::-webkit-scrollbar-thumb  { background: var(--lnc-border-light); border-radius: 3px; }
+.lancer-minimal.npc-sheet .sheet-body::-webkit-scrollbar-thumb:hover { background: var(--lnc-accent); }
