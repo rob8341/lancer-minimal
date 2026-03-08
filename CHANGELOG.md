@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.2] - Combat System Update
+
+### Added
+- **Lancer Initiative System**
+  - Replaces d20 initiative with activation-based system
+  - Combatants sorted by faction: Players > Friendly > Neutral > Hostile
+  - Color-coded activate buttons: Blue (player), Green (friendly), Yellow (neutral), Red (hostile)
+  - Two-step activation: Click Play (▶) to activate → Click Check (✓) to pass turn → Shows X (✕) when done
+  - GM can click X button to undo/deactivate any combatant
+  - Players can only activate their own combatants
+  - Reset Round button for GM to reset all activations
+  - Context menu options: Activate, End Turn, Deactivate (GM), Reset All (GM)
+
+- **NPC Recharge System**
+  - Recharge roll button on NPC sheet header
+  - Target number field (default 5+)
+  - Ready checkbox that auto-ticks on successful recharge
+  - Dice So Nice support for recharge rolls
+
+### Changed
+- Token bars no longer track HP/Overshield by default (configurable per token)
+- Removed tier display from NPC weapon attack dialogs
+- Activated combatants show X icon instead of checkmark, keeping faction color
+
+### Fixed
+- Weapon attack bonus now properly labeled in chat for NPCs
+- Combat tracker properly shows faction colors throughout activation states
+
+---
+
 ## [1.0.0] - Initial Release
 
 ### Added

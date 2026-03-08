@@ -7,9 +7,14 @@ import { LancerPilotSheet } from "./module/sheets/pilot-sheet.mjs";
 import { LancerMechSheet } from "./module/sheets/mech-sheet.mjs";
 import { LancerNpcSheet } from "./module/sheets/npc-sheet.mjs";
 import { LancerItemSheet } from "./module/sheets/item-sheet.mjs";
+import { LancerCombat, initCombatTrackerHooks } from "./module/combat/lancer-combat.mjs";
 
 Hooks.once("init", () => {
   console.log("lancer-minimal | Initializing Lancer (Minimal) system");
+
+  // ── Register Custom Combat System ──────────────────────
+  CONFIG.Combat.documentClass = LancerCombat;
+  initCombatTrackerHooks();
 
   // ── Register Handlebars helpers (safety net) ───────────
   if (!Handlebars.helpers.eq) {

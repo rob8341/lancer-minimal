@@ -57,6 +57,19 @@ All rolls display in Dice So Nice if the module is installed.
 ### Macro Bar Support
 Drag any roll button to the macro bar for quick access.
 
+### Lancer Initiative System
+- Replaces d20 initiative with activation-based combat
+- Combatants sorted by faction (Players > Friendly > Neutral > Hostile)
+- Color-coded activate buttons (Blue=Player, Green=Friendly, Yellow=Neutral, Red=Hostile)
+- Two-step activation: Play (▶) → Check (✓) → X (✕)
+- GM can undo activations by clicking X
+- Players can only activate their own combatants
+
+### NPC Recharge System
+- Recharge roll button with target number (default 5+)
+- Auto-ticks Ready checkbox on successful roll
+- Dice So Nice support
+
 ### Lancer Status Effects
 Custom status conditions: Danger Zone, Down and Out, Engaged, Exposed, Hidden, Invisible, Prone, Shut Down, Immobilized, Impaired, Jammed, Lock On, Shredded, Slowed, Stunned.
 

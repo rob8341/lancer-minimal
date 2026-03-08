@@ -2062,3 +2062,391 @@
 .lancer-minimal.npc-sheet .sheet-body::-webkit-scrollbar-track  { background: var(--lnc-bg-dark); }
 .lancer-minimal.npc-sheet .sheet-body::-webkit-scrollbar-thumb  { background: var(--lnc-border-light); border-radius: 3px; }
 .lancer-minimal.npc-sheet .sheet-body::-webkit-scrollbar-thumb:hover { background: var(--lnc-accent); }
+
+/* ============================================================
+   Combat Tracker Styles
+   ============================================================ */
+
+#combat.lancer-combat .combatant-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#combat.lancer-combat .combatant {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--lnc-border-light);
+  transition: opacity 0.2s, background 0.2s;
+}
+
+#combat.lancer-combat .combatant:hover {
+  background: var(--lnc-bg-light);
+}
+
+#combat.lancer-combat .combatant.acted {
+  opacity: 0.5;
+  background: var(--lnc-bg-mid);
+}
+
+#combat.lancer-combat .combatant.can-claim {
+  background: rgba(39, 174, 96, 0.1);
+}
+
+#combat.lancer-combat .combatant .token-image {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  border: 2px solid var(--lnc-border-light);
+  object-fit: cover;
+}
+
+#combat.lancer-combat .combatant .token-name {
+  flex: 1;
+}
+
+#combat.lancer-combat .combatant .token-name h4 {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--lnc-text-bright);
+}
+
+#combat.lancer-combat .combatant .combatant-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+#combat.lancer-combat .combatant-claim {
+  cursor: pointer;
+  transition: background 0.15s, transform 0.15s;
+}
+
+#combat.lancer-combat .combatant-claim:hover {
+  background: #1e8449 !important;
+  transform: scale(1.05);
+}
+
+#combat.lancer-combat .combatant-unclaim {
+  cursor: pointer;
+  font-size: 12px;
+}
+
+#combat.lancer-combat .combatant-unclaim:hover {
+  color: var(--lnc-danger) !important;
+}
+
+#combat.lancer-combat .turn-indicator {
+  font-size: 12px;
+}
+
+#combat.lancer-combat .reset-all-slots:hover {
+  background: var(--lnc-accent-light) !important;
+}
+
+/* ============================================================
+   Combat Tracker - Slot Based System
+   ============================================================ */
+
+.lancer-slots-container {
+  padding: 4px;
+}
+
+.lancer-turn-indicator {
+  text-align: center;
+  font-weight: bold;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.lancer-turn-indicator.player-turn {
+  background: #1a4a6e;
+  color: #4da6ff;
+  border: 2px solid #4da6ff;
+}
+.lancer-turn-indicator.enemy-turn {
+  background: #4a1a1a;
+  color: #ff4d4d;
+  border: 2px solid #ff4d4d;
+}
+
+.lancer-slot-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.lancer-slot {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  margin-bottom: 4px;
+  border-radius: 4px;
+  background: var(--lnc-bg-light, #e2e8f0);
+  border-left: 4px solid #888;
+  min-height: 36px;
+}
+
+.lancer-slot.pc-slot {
+  border-left-color: #4da6ff;
+}
+
+.lancer-slot.npc-slot {
+  border-left-color: #ff4d4d;
+}
+
+.lancer-slot.current-slot {
+  background: #fff8e6;
+  box-shadow: 0 0 6px rgba(255, 200, 0, 0.5);
+}
+
+.lancer-slot.claimed {
+  opacity: 0.7;
+  background: #e8e8e8;
+}
+
+.slot-number {
+  font-weight: bold;
+  font-size: 12px;
+  color: #666;
+  min-width: 16px;
+}
+
+.slot-type-badge {
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+
+.pc-slot .slot-type-badge {
+  background: #4da6ff;
+  color: white;
+}
+
+.npc-slot .slot-type-badge {
+  background: #ff4d4d;
+  color: white;
+}
+
+.slot-token-img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #666;
+}
+
+.slot-claimed-name {
+  flex: 1;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.slot-empty {
+  flex: 1;
+  color: #999;
+  font-style: italic;
+}
+
+.slot-status {
+  color: #28a745;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.slot-waiting {
+  color: #999;
+  font-style: italic;
+  font-size: 12px;
+}
+
+.slot-claim-btn {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 4px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+}
+.slot-claim-btn:hover {
+  background: #218838;
+}
+
+.slot-unclaim-btn {
+  background: transparent;
+  border: 1px solid #dc3545;
+  color: #dc3545;
+  padding: 2px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  margin-left: 4px;
+}
+.slot-unclaim-btn:hover {
+  background: #dc3545;
+  color: white;
+}
+
+.lancer-gm-controls {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #ddd;
+  display: flex;
+  justify-content: center;
+}
+
+.reset-all-btn {
+  background: var(--lnc-accent, #cc2936);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+}
+.reset-all-btn:hover {
+  background: #a61f2b;
+}
+
+/* ============================================================
+   Lancer Activate Button System (Simple Approach)
+   ============================================================ */
+
+/* Combatant row coloring by faction */
+#combat-tracker .combatant.lancer-player {
+  border-left: 4px solid #4da6ff;
+}
+
+#combat-tracker .combatant.lancer-friendly {
+  border-left: 4px solid #5dade2;
+}
+
+#combat-tracker .combatant.lancer-neutral {
+  border-left: 4px solid #aab7b8;
+}
+
+#combat-tracker .combatant.lancer-hostile {
+  border-left: 4px solid #e74c3c;
+}
+
+#combat-tracker .combatant.lancer-activated {
+  opacity: 0.5;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* Activate button */
+.lancer-activate-btn {
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s, opacity 0.15s;
+}
+
+.lancer-activate-btn:not(:disabled):hover {
+  transform: scale(1.1);
+}
+
+.lancer-activate-btn:disabled {
+  cursor: default;
+  opacity: 0.6;
+}
+
+/* Color by faction - always stays colored, even when activated */
+.lancer-activate-btn.player {
+  background: #4da6ff;
+  color: white;
+}
+
+.lancer-activate-btn.player.activated {
+  background: #4da6ff;
+  color: white;
+}
+
+.lancer-activate-btn.friendly {
+  background: #27ae60;
+  color: white;
+}
+
+.lancer-activate-btn.friendly.activated {
+  background: #27ae60;
+  color: white;
+}
+
+.lancer-activate-btn.neutral {
+  background: #f4d03f;
+  color: #333;
+}
+
+.lancer-activate-btn.neutral.activated {
+  background: #f4d03f;
+  color: #333;
+}
+
+.lancer-activate-btn.hostile {
+  background: #e74c3c;
+  color: white;
+}
+
+.lancer-activate-btn.hostile.activated {
+  background: #e74c3c;
+  color: white;
+}
+
+/* Active state (taking turn - check mark) */
+.lancer-activate-btn.active {
+  box-shadow: 0 0 8px 2px rgba(255, 215, 0, 0.6);
+}
+
+/* Passed state (done - X mark) - keep same color, just dim slightly */
+.lancer-activate-btn.passed {
+  opacity: 0.7;
+}
+
+/* Row styling for active combatant */
+#combat-tracker .combatant.lancer-active {
+  background: rgba(255, 215, 0, 0.15);
+  box-shadow: inset 0 0 0 2px rgba(255, 215, 0, 0.5);
+}
+
+/* Row styling for passed combatant */
+#combat-tracker .combatant.lancer-passed {
+  opacity: 0.5;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* Reset button in header */
+.lancer-reset-btn {
+  background: var(--lnc-accent, #cc2936);
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 600;
+  margin-left: 8px;
+}
+
+.lancer-reset-btn:hover {
+  background: var(--lnc-accent-light, #e63946);
+}
