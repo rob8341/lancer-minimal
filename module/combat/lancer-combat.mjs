@@ -51,10 +51,22 @@ export class LancerCombat extends Combat {
   /**
    * Activate a combatant (take their turn) - Step 1
    * Sets state to 1 (active - showing check mark)
+   * Only one combatant can be active at a time - must wait for current turn to end
    */
   async activateCombatant(combatantId) {
     const combatant = this.combatants.get(combatantId);
     if (!combatant) return;
+    
+    // Check if anyone else is currently active (state 1)
+    const currentlyActive = this.combatants.find(c => 
+      c.id !== combatantId && (c.getFlag("lancer-minimal", "activationState") ?? 0) === 1
+    );
+    
+    // Block activation if someone else is already active
+    if (currentlyActive) {
+      ui.notifications.warn(`${currentlyActive.name} is currently taking their turn. Wait for them to pass.`);
+      return;
+    }
     
     // Set as current combatant
     await this.update({ turn: this.turns.findIndex(t => t.id === combatantId) });

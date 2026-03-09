@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.3] - Combat & Linking Update
+
+### Added
+- **Bidirectional Pilot-Mech Linking**
+  - Dragging a mech onto a pilot sheet also sets the pilot link on the mech
+  - Dragging a pilot onto a mech sheet also adds the mech to the pilot's shortcuts
+  - Deleting a link from either sheet removes the link from both sides
+  - Keeps pilot-mech relationships synchronized in both directions
+
+### Changed
+- **Combat System — One Active at a Time**
+  - Only one combatant can be active (taking their turn) at a time
+  - Cannot activate while another combatant is active — shows warning message
+  - Must wait for current combatant to click checkmark (✓) to pass turn
+  - Then another combatant can activate
+  - GM can still undo passed combatants by clicking their X button
+
+### Fixed
+- Combat turn order now properly enforced — players cannot steal turns from others
+
+---
+
 ## [1.0.2] - Combat System Update
 
 ### Added

@@ -185,9 +185,19 @@ export class LancerMechSheet extends ActorSheet {
 
   /**
    * Handle dropping a pilot actor to create a link.
+   * Also adds this mech to the pilot's mechLinks (bidirectional).
    */
   async _onDropPilotLink(pilotActor) {
-    return this.actor.update({ "system.pilotLink": pilotActor.id });
+    await this.actor.update({ "system.pilotLink": pilotActor.id });
+    
+    // Bidirectional: Also add this mech to the pilot's mechLinks
+    const pilotLinks = foundry.utils.duplicate(pilotActor.system.mechLinks ?? []);
+    if (!pilotLinks.find(l => l.id === this.actor.id)) {
+      if (pilotLinks.length < 3) {
+        pilotLinks.push({ id: this.actor.id, name: this.actor.name });
+        await pilotActor.update({ "system.mechLinks": pilotLinks });
+      }
+    }
   }
 
   /**
@@ -203,11 +213,14 @@ export class LancerMechSheet extends ActorSheet {
 
   /**
    * Clear the pilot link (with confirmation).
+   * Also removes this mech from the pilot's mechLinks (bidirectional).
    */
   async _onClearPilotLink(event) {
     event.preventDefault();
     event.stopPropagation();
 
+    const pilotId = this.actor.system.pilotLink;
+    
     const confirmed = await Dialog.confirm({
       title: "Remove Pilot Link",
       content: "<p>Remove the link to this pilot?</p>",
@@ -215,6 +228,20 @@ export class LancerMechSheet extends ActorSheet {
     });
 
     if (!confirmed) return;
+    
+    // Bidirectional: Also remove this mech from the pilot's mechLinks
+    if (pilotId) {
+      const pilotActor = game.actors?.get(pilotId);
+      if (pilotActor) {
+        const pilotLinks = foundry.utils.duplicate(pilotActor.system.mechLinks ?? []);
+        const mechIndex = pilotLinks.findIndex(l => l.id === this.actor.id);
+        if (mechIndex !== -1) {
+          pilotLinks.splice(mechIndex, 1);
+          await pilotActor.update({ "system.mechLinks": pilotLinks });
+        }
+      }
+    }
+    
     return this.actor.update({ "system.pilotLink": null });
   }
 

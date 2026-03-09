@@ -2,7 +2,7 @@
   "id": "lancer-minimal",
   "title": "Lancer (Minimal)",
   "description": "A minimal Foundry VTT v13 system for the Lancer RPG. LANCER is a tabletop role playing game created by Miguel Lopez and Tom Parkinson-Morgan, published by Massif Press. This system is an unofficial, fan-made implementation and is not affiliated with or endorsed by Massif Press.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "compatibility": {
     "minimum": "13",
     "verified": "13",
@@ -32,7 +32,7 @@
   "secondaryTokenAttribute": null,
   "url": "https://github.com/rob8341/lancer-minimal",
   "manifest": "https://raw.githubusercontent.com/rob8341/lancer-minimal/refs/heads/main/system.json",
-  "download": "https://github.com/rob8341/lancer-minimal/releases/download/v1.0.2/lancer-minimal.zip",
+  "download": "https://github.com/rob8341/lancer-minimal/releases/download/v1.0.3/lancer-minimal.zip",
   "license": "MIT",
   "readme": "README.md",
   "bugs": "https://github.com/rob8341/lancer-minimal/issues",

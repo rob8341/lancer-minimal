@@ -123,6 +123,7 @@ export class LancerPilotSheet extends ActorSheet {
 
   /**
    * Handle dropping a mech actor to create a shortcut link.
+   * Also links this pilot to the mech (bidirectional).
    */
   async _onDropMechLink(mechActor) {
     const links = foundry.utils.duplicate(this.actor.system.mechLinks ?? []);
@@ -140,7 +141,12 @@ export class LancerPilotSheet extends ActorSheet {
     }
 
     links.push({ id: mechActor.id, name: mechActor.name });
-    return this.actor.update({ "system.mechLinks": links });
+    await this.actor.update({ "system.mechLinks": links });
+    
+    // Bidirectional: Also link this pilot to the mech
+    if (mechActor.system.pilotLink !== this.actor.id) {
+      await mechActor.update({ "system.pilotLink": this.actor.id });
+    }
   }
 
   /**
@@ -156,13 +162,15 @@ export class LancerPilotSheet extends ActorSheet {
 
   /**
    * Delete a mech shortcut link (with confirmation).
+   * Also removes the pilot link from the mech (bidirectional).
    */
   async _onDeleteMechLink(event) {
     event.preventDefault();
     event.stopPropagation();
     const index = Number(event.currentTarget.dataset.index);
     const links = foundry.utils.duplicate(this.actor.system.mechLinks ?? []);
-    const mechName = links[index]?.name ?? "this mech";
+    const mechEntry = links[index];
+    const mechName = mechEntry?.name ?? "this mech";
 
     const confirmed = await Dialog.confirm({
       title: "Remove Mech Shortcut",
@@ -171,6 +179,15 @@ export class LancerPilotSheet extends ActorSheet {
     });
 
     if (!confirmed) return;
+    
+    // Bidirectional: Also remove pilot link from the mech
+    if (mechEntry?.id) {
+      const mechActor = game.actors?.get(mechEntry.id);
+      if (mechActor && mechActor.system.pilotLink === this.actor.id) {
+        await mechActor.update({ "system.pilotLink": null });
+      }
+    }
+    
     links.splice(index, 1);
     return this.actor.update({ "system.mechLinks": links });
   }
